@@ -1,0 +1,174 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.discussion
+{
+    background-color: #c9e0eb; 
+    width:90%;
+    height:90%;
+    vertical-align:top;
+    padding:10px;
+    list-style: none;
+}
+
+.xsmall-font-size {
+    font-size: xx-small;
+}
+
+.gridtable {
+    width: 100%;
+}
+
+.large-textarea {
+    max-width: 300px;
+    width: 300px;
+    height: 200px;
+}
+
+.dont-break-out {
+
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+}
+
+.borderless {
+    border: none;
+}
+
+/* Comment Box Start */
+
+.detailBox {
+    width: 98%;
+    border: 1px solid #bbb;
+    margin: 10px;
+}
+
+.titleBox {
+    background-color: #fdfdfd;
+    padding: 10px;
+}
+
+    .titleBox label {
+        color: #444;
+        margin: 0;
+        display: inline-block;
+    }
+
+.commentBox {
+    padding: 1px;
+    border-top: 1px dotted #bbb;
+}
+
+    .commentBox .form-group:first-child, .actionBox .form-group:first-child {
+        width: 80%;
+    }
+
+    .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+        width: 18%;
+    }
+
+.actionBox .form-group * {
+    width: 100%;
+}
+
+.taskDescription {
+    margin-top: 10px 0;
+}
+
+.commentList {
+    padding: 0;
+    list-style: none;
+    max-height: 200px;
+    overflow: auto;
+}
+
+    .commentList li {
+        margin: 0;
+        margin-top: 10px;
+    }
+
+        .commentList li > div {
+            display: table-cell;
+        }
+
+.commenterImage {
+    width: 30px;
+    margin-right: 5px;
+    height: 100%;
+    float: left;
+}
+
+    .commenterImage img {
+        width: 100%;
+        border-radius: 50%;
+    }
+
+.commentText p {
+    margin: 0;
+}
+
+.sub-text {
+    color: #aaa;
+    font-family: verdana;
+    font-size: 11px;
+}
+
+.actionBox {
+    border-top: 1px dotted #bbb;
+    padding: 10px;
+}
+
+/* Comment Box End */

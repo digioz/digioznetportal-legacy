@@ -1,0 +1,40 @@
+﻿@using digioz.Portal.Web.Extensions
+@model List<digioz.Portal.Web.Areas.Admin.ViewModels.MailingListImageViewModel>
+@{
+    ViewBag.Title = "Mailing List Images";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 20);
+}
+
+<p>
+    <div class="btn btn-default col-md-2">@Html.ActionLink("Upload Image", "Create")</div>
+</p>
+
+@grid.GetHtml(
+    tableStyle: "table",
+    columns: new[] {
+    grid.Column("",
+                header: "Image",
+                format: @<text>
+                    <a href="/Content/Emails/uploads/Full/@item.Name">
+                        <img class="img-thumbnail" alt="120x120" style="width: 120px; height: 120px;" src="/Content/Emails/uploads/Thumb/@item.Name" />
+                    </a>
+                </text>
+    ),
+    grid.Column("Name", "File Name"),
+    grid.Column("",
+                header: "",
+                format: (item) => MvcHtmlString.Create(
+                            Html.ActionImage("Delete", new { fileName = item.Name }, "~/Content/images/icons/16x16/Cancel.png", imageAttributes: new { alt = "Delete", @class = "icon" },
+                                linkAttributes: new { title = "Delete"}).ToString())
+                )
+})
+
+
+<p>&nbsp;</p>
+
+<div>
+    @Html.ActionLink("Back to Mailing List Menu", "Index", "MailingListManager")
+</div>
+
+

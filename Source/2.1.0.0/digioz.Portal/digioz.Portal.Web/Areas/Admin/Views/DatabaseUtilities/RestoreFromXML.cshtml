@@ -1,0 +1,38 @@
+﻿@model digioz.Portal.Web.Areas.Admin.ViewModels.RestoreFromXMLViewModel
+@{
+    ViewBag.Title = "Restore From XML";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Restore From XML</h2>
+
+<p>Please select the Data Folder to Restore from.</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="RestoreFolders">Restore Folders</label>
+            <div class="col-md-10" style="padding-left:20px;">
+                <select class="form-control" id="RestoreFolders" name="RestoreFolders">
+                    @foreach (var item in Model.RestoreFolders)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Next" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,16 @@
+﻿@model digioz.Portal.Web.Models.ViewModels.CommentsMenuViewModel
+
+@if (Model != null && Model.CommentsEnabled == true)
+{
+    @*<table style="width:100%; background-color: #808080; color:#ffffff;">
+        <tr>
+            <td>
+                Comments (@Model.Count)
+            </td>
+            <td>
+                Likes (@Model.Likes)
+            </td>
+        </tr>
+    </table>*@ 
+    Html.RenderAction("List", "Comments", new { referenceId = Model.ReferenceId, referenceType = Model.ReferenceType });
+}

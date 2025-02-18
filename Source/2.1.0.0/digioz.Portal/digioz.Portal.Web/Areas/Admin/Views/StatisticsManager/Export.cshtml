@@ -1,0 +1,114 @@
+﻿@model digioz.Portal.Web.Areas.Admin.ViewModels.VisitorInfoExportPurgeViewModel
+@{
+    ViewBag.Title = "Export Visitor Info Logs";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section head {
+    @Styles.Render("~/Content/jqueryuicss")
+    @Scripts.Render("~/bundles/jqueryui")
+    <script>
+        $(function () {
+            $("#StartDate").datepicker({
+                showOtherMonths: true,
+                selectOtherMonths: true,
+                dateFormat: "mm/dd/yy"
+            });
+            $("#EndDate").datepicker({
+                showOtherMonths: true,
+                selectOtherMonths: true,
+                dateFormat: "mm/dd/yy"
+            });
+
+            $("#StartDateButton").click(function () {
+                $("#StartDate").datepicker("show");
+            });
+            $("#EndDateButton").click(function () {
+                $("#EndDate").datepicker("show");
+            });
+        });
+
+    </script>
+}
+
+<h2>Export Visitor Info Logs</h2>
+
+@if (ViewBag.Status != null)
+{
+    if (ViewBag.Status == "Success")
+    {
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            @Html.Raw(ViewBag.Message)
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            @Html.Raw(ViewBag.Message)
+        </div>
+    }
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <table style="border:0px;">
+                    <tr>
+                        <td>
+                            @Html.TextBoxFor(model => model.StartDate, new { @readonly = "readonly", @class = "form-control" })
+                        </td>
+                        <td>
+                            <img id="StartDateButton" name="StartDateButton" src="~/Content/images/icons/32x32/Calendar.png" />
+                        </td>
+                    </tr>
+                </table>
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <table style="border:0px;">
+                    <tr>
+                        <td>
+                            @Html.TextBoxFor(model => model.EndDate, new { @readonly = "readonly", @class = "form-control" })
+                        </td>
+                        <td>
+                            <img id="EndDateButton" name="EndDateButton" src="~/Content/images/icons/32x32/Calendar.png" />
+                        </td>
+                    </tr>
+                </table>
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProcessAll, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProcessAll, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProcessAll, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Export" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

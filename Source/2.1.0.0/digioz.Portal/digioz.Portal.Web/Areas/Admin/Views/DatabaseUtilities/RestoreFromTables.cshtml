@@ -1,0 +1,51 @@
+﻿@model digioz.Portal.Web.Areas.Admin.ViewModels.RestoreFromXMLViewModel
+@{
+    ViewBag.Title = "Restore From Tables";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Restore From Tables</h2>
+
+<p>Please select the tables to Restore From.</p>
+<p><b>Data Directory Selected: </b>@Model.SelectedFolder</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.Hidden("SelectedFolder")
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ListOfTables">Tables To Export</label>
+            <div class="col-md-10" style="padding-left:30px;">
+                <select class="form-control" id="ListOfTables" name="ListOfTables" multiple>
+                    @foreach (var item in Model.ListOfTables)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ImportAllTables">Import All Tables?</label>
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    @Html.CheckBoxFor(model => model.ImportAllTables)
+                    @Html.ValidationMessageFor(model => model.ImportAllTables)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Restore Tables" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+}
+

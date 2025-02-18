@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @HttpContext.Current.Session["SiteName"] - Admin Area</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/chart")
+
+    @RenderSection("Head", required: false)
+</head>
+<body>
+    <!-- Powered by DigiOz .NET Portal -->
+    <!-- For more information visit http://www.digioz.com -->
+    <div class="container" style="min-height:80px;">
+        <div style="padding-left:20px;"><h1 style="position:absolute; top:20px;">@HttpContext.Current.Session["SiteName"] - Admin Area</h1><br /><br /></div>
+    </div>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+                    <li class="active">@Html.ActionLink("View Site", "Index", "Home", new { area = "" }, new { @target = "_blank" })</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container theme-showcase" style="padding:0px;">
+        <div class="col-sm-3">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Menu</h3>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <li class="active">@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+                        <li class="active">@Html.ActionLink("Page Manager", "Index", "PageManager")</li>
+                        <li class="active">@Html.ActionLink("Configuration", "Index", "ConfigurationManager")</li>
+                        <li class="active">@Html.ActionLink("Database Utilities", "Index", "DatabaseUtilities")</li>
+                        <li class="active">@Html.ActionLink("File Manager", "Index", "FileManager")</li>
+                        <li class="active">@Html.ActionLink("Plugin Manager", "Index", "PluginManager")</li>
+                        <li class="active">@Html.ActionLink("Forum Manager", "Index", "ForumManager")</li>
+                        <li class="active">@Html.ActionLink("Poll Manager", "Index", "PollManager")</li>
+                        <li class="active">@Html.ActionLink("Statistics", "Index", "StatisticsManager")</li>
+                        <li class="active">@Html.ActionLink("Menu Manager", "Index", "MenuManager")</li>
+                        <li class="active">@Html.ActionLink("User Manager", "Index", "UserManager")</li>
+                        <li class="active">@Html.ActionLink("User Role Manager", "Index", "UserRoleManager")</li>
+                        <li class="active">@Html.ActionLink("Announcements", "Index", "AnnouncementsManager")</li>
+                        <li class="active">@Html.ActionLink("Picture Manager", "Index", "PictureManager")</li>
+                        <li class="active">@Html.ActionLink("Video Manager", "Index", "VideoManager")</li>
+                        <li class="active">@Html.ActionLink("Link Manager", "Index", "LinkManager")</li>
+                        <li class="active">@Html.ActionLink("Chat Manager", "Index", "ChatManager")</li>
+                        <li class="active">@Html.ActionLink("Product Manager", "Index", "ProductManager")</li>
+                        <li class="active">@Html.ActionLink("Product Category Manager", "Index", "ProductCategoryManager")</li>
+                        <li class="active">@Html.ActionLink("Order Manager", "Index", "OrderManager")</li>
+                        <li class="active">@Html.ActionLink("Mailing List", "Index", "MailingListManager")</li>
+                        <li class="active">@Html.ActionLink("Module Manager", "Index", "ModuleManager")</li>
+                        <li class="active">@Html.ActionLink("Slide Show Manager", "Index", "SlideShowManager")</li>
+                        <li class="active">@Html.ActionLink("Comment Manager", "Index", "CommentManager")</li>
+                        <li class="active">@Html.ActionLink("News Aggregator", "Index", "RSSManager")</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">User</h3>
+                </div>
+                <div class="panel-body">
+                    @if (User.Identity.IsAuthenticated == true)
+                    {
+                        <ul>
+                            <li>
+                                @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                }
+                            </li>
+                            <li>@Html.ActionLink("My Profile", "Index", "Profile", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("Change Password", "Manage", "Account", new { area = "" }, null)</li>
+                        </ul>
+                        <p style="padding-left:30px;">Logged in as @Html.ActionLink(@User.Identity.Name, "Index", "Profile", new { area = "" }, null).</p>
+                    }
+                    else
+                    {
+                        <ul>
+                            <li>@Html.ActionLink("Login", "Login", "Account", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("Register", "Register", "Account", new { area = "" }, null)</li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            @RenderSection("featured", required: false)
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@ViewBag.Title</h3>
+                </div>
+                <div class="panel-body">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div> <!-- /container -->
+
+    <div class="row" style="background:#808080;width:100%;margin:0px;">
+        <div style="padding-top:10px;text-align:center;">
+            <p><a href="/Home/Index" style="color:#FFFFFF;padding-top:20px;">&copy; @DateTime.Now.Year @HttpContext.Current.Session["SiteName"]</a></p>
+        </div>
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

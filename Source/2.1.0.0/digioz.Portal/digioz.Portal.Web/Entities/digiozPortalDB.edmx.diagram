@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3da2e660461a42c3ae0a4494ed245497" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="digiozPortalModel.Announcement" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="digiozPortalModel.Role" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="digiozPortalModel.UserClaim" Width="1.5" PointX="3.125" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="digiozPortalModel.UserLogin" Width="1.5" PointX="5.375" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="digiozPortalModel.User" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="digiozPortalModel.Menu" Width="1.5" PointX="5.375" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="digiozPortalModel.Page" Width="1.5" PointX="7.125" PointY="6.5" IsExpanded="true" />
+        <AssociationConnector Association="digiozPortalModel.FK_Announcement_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="digiozPortalModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="digiozPortalModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="digiozPortalModel.FK_Menu_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="digiozPortalModel.FK_Page_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="digiozPortalModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="digiozPortalModel.Profile" Width="1.5" PointX="8.875" PointY="6.5" />
+        <AssociationConnector Association="digiozPortalModel.FK_Profile_AspNetUsers" />
+        <EntityTypeShape EntityType="digiozPortalModel.Link" Width="1.5" PointX="7.125" PointY="4" />
+        <EntityTypeShape EntityType="digiozPortalModel.Log" Width="1.5" PointX="8.875" PointY="4.625" />
+        <EntityTypeShape EntityType="digiozPortalModel.LogVisitor" Width="1.5" PointX="10.625" PointY="4.625" />
+        <EntityTypeShape EntityType="digiozPortalModel.Config" Width="1.5" PointX="10.625" PointY="7.75" />
+        <EntityTypeShape EntityType="digiozPortalModel.Picture" Width="1.5" PointX="12.75" PointY="7.375" />
+        <EntityTypeShape EntityType="digiozPortalModel.PictureAlbum" Width="1.5" PointX="12.75" PointY="4.625" />
+        <AssociationConnector Association="digiozPortalModel.FK_Picture_AspNetUsers" />
+        <AssociationConnector Association="digiozPortalModel.FK_Picture_PictureAlbum" />
+        <EntityTypeShape EntityType="digiozPortalModel.Video" Width="1.5" PointX="14.625" PointY="7.375" />
+        <EntityTypeShape EntityType="digiozPortalModel.VideoAlbum" Width="1.5" PointX="14.5" PointY="4.625" />
+        <AssociationConnector Association="digiozPortalModel.FK_Video_AspNetUsers" />
+        <AssociationConnector Association="digiozPortalModel.FK_Video_VideoAlbum" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

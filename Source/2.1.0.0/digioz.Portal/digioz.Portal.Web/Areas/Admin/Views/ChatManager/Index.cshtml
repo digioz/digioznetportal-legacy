@@ -1,0 +1,32 @@
+﻿@model IEnumerable<digioz.Portal.Domain.DomainModel.Chat>
+@using digioz.Portal.Web.Extensions
+@{
+    ViewBag.Title = "Chat Manager";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10);
+}
+
+<h2>Chat Manager</h2>
+
+<p>
+    <div class="btn btn-default">@Html.ActionLink("Purge", "Purge")</div>
+    <div class="btn btn-default">@Html.ActionLink("Export", "Export")</div>
+</p>
+
+@grid.GetHtml(
+        tableStyle: "gridtable table table-bordered",
+    columns: new[] {
+    grid.Column("ID", style:"xsmall-font-size"),
+    grid.Column("User.Username", "User"),
+    grid.Column("Message"),
+    grid.Column("Timestamp"),
+    grid.Column("",
+                header: "Actions",
+                format: @<text>
+                    @Html.Raw(
+                    Html.ActionImage("Delete", new { id = item.ID }, "~/Content/images/icons/16x16/Cancel.png", imageAttributes: new { alt = "Delete", @class = "icon" },
+                        linkAttributes: new { title = "Delete" }).ToString()
+                    )
+                </text>
+                )
+})

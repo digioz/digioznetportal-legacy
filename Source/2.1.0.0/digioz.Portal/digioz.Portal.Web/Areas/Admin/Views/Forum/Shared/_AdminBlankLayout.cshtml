@@ -1,0 +1,51 @@
+﻿@using digioz.Portal.Web.Application
+@{
+    //var theme = Html.Settings().Theme;
+    //var themePath = string.Concat(AppConstants.ThemeRootFolder, theme);
+    var globalClass = Context.IsMobileDevice() ? "mobile" : "desktop";
+}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="n3o Digital">
+    
+      @Styles.Render("~/Content/css")
+      @Styles.Render("~/Content/admin")
+
+    <!--<link href="/css/bootstrap-responsive.css" rel="stylesheet">-->
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    @*<link rel="shortcut icon" href="@Url.Content("~/content/admin/images/favicon.ico")">*@
+    <link rel="apple-touch-icon-precomposed" href="@Url.Content("~/Content/Images/Logo_Small.png")">
+        <script type="text/javascript">
+            var app_base = '@Url.Content("~/")';
+        </script>
+      @Scripts.Render("~/bundles/jquery")
+      @Scripts.Render("~/bundles/bootstrap")
+      @Scripts.Render("~/bundles/admin")
+
+    @RenderSection("AdminHeader", false)
+  </head>
+
+<body class="@globalClass">
+
+    <div class="container blankcontainer">
+
+        @Html.Partial("_GenericMessage")        
+
+        <div class="row">    
+                 @RenderBody()
+        </div>        
+
+    </div> 
+
+  </body>
+</html>

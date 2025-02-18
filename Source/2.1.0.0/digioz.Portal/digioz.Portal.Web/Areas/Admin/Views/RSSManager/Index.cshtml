@@ -1,0 +1,55 @@
+﻿@model IEnumerable<digioz.Portal.Domain.DomainModel.RSS>
+@using digioz.Portal.Web.Extensions
+@{
+    ViewBag.Title = "News Aggregator";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p>
+    <div class="btn btn-default">@Html.ActionLink("Create New", "Create")</div>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Timestamp)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td style="width:100px;">
+            <a href="@Html.DisplayFor(modelItem => item.Url)" target="_blank" style="font-size:x-small;"><img src="~/Content/images/icons/16x16/Link.png" /></a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timestamp)
+        </td>
+        <td>
+            @Html.Raw(
+                Html.ActionImage("Details", new { id = item.ID }, "~/Content/images/icons/16x16/Search.png", imageAttributes: new { alt = "Details", @class = "icon" },
+                linkAttributes: new { title = "Details" }).ToString() + " " +
+                Html.ActionImage("Edit", new { id = item.ID }, "~/Content/images/icons/16x16/Edit.png", imageAttributes: new { alt = "Edit", @class = "icon" },
+                linkAttributes: new { title = "Edit" }).ToString() + " " +
+                Html.ActionImage("Delete", new { id = item.ID }, "~/Content/images/icons/16x16/Cancel.png", imageAttributes: new { alt = "Delete", @class = "icon" },
+                linkAttributes: new { title = "Delete" }).ToString()
+            )
+        </td>
+    </tr>
+}
+
+</table>

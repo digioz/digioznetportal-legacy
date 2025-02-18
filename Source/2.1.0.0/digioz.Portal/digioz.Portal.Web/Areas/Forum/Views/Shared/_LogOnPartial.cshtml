@@ -1,0 +1,7 @@
+﻿@if(Request.IsAuthenticated) {        
+    <text><strong>@User.Identity.Name</strong>
+    [ @Html.ActionLink(Html.LanguageString("LogOn.LogOff"), "LogOff", "Account", new { area = "" }, null) ]</text>
+}
+else {
+    @:[ @Html.ActionLink(Html.LanguageString("LogOn.LogOn"), "Login", "Account", new { area = "" }, null) ]
+}

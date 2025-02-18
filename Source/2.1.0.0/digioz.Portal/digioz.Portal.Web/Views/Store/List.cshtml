@@ -1,0 +1,82 @@
+﻿@using System.Globalization
+@model IEnumerable<digioz.Portal.Domain.DomainModel.ShoppingCart>
+@{
+    ViewBag.Title = "Shopping Cart List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Shopping Cart List</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Product Name</th>
+            <th>Description</th>
+            <td>Quantity</td>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+            decimal total = 0;
+
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@Html.ActionLink(item.Product.Name, "Details", new { id = item.ProductID})</td>
+                    <td>@Html.Raw(item.Product.ShortDescription)</td>
+                    <td>
+                        @using (Html.BeginForm("Update", "Store", new { id = item.ID }))
+                        {
+                            <table class="borderless">
+                                <tr>
+                                    <td><input class="form-control input-sm" type="number" id="Quantity" name="Quantity" size="10" value="@item.Quantity" /></td>
+                                    <td><input type="submit" value="Submit" class="btn btn-sm btn-info" /></td>
+                                </tr>
+                            </table>
+                        }
+                    </td>
+                    <td style="text-align: right;">$ @item.Product.Price.ToString("N", new CultureInfo("en-US"))</td>
+                    <td>@Html.ActionLink("Remove", "Remove", new {id = item.ID}, new {@class = "btn btn-sm btn-danger", @style = "color:#ffffff;"})</td>
+                </tr>
+            
+                i++;
+                total = total + (item.Product.Price * item.Quantity);
+            }
+
+            if (ViewBag.TransactionFee > 0 && Model.Any())
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>Transaction Fee</td>
+                    <td>Transaction fee for processing this order</td>
+                    <td style="text-align: right;">$ @ViewBag.TransactionFee.ToString("N", new CultureInfo("en-US"))</td>
+                    <td>&nbsp;</td>
+                </tr>
+                total += ViewBag.TransactionFee;
+            }
+
+            <tr>
+                <td colspan="3" style="text-align: right;">Total: </td>
+                <td style="text-align: right; font-weight: bold;">$ @total.ToString("N", new CultureInfo("en-US"))</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+@if (Model.Count() > 0)
+{
+    @Html.ActionLink("Back to Index", "Index", null, new { @class = "btn btn-md btn-primary", @style = "color:#ffffff;" })
+    <text>&nbsp;</text>
+    @Html.ActionLink("Empty Cart", "Empty", null, new {@class = "btn btn-md btn-danger", @style = "color:#ffffff;"})
+    <text>&nbsp;</text>
+    @Html.ActionLink("Checkout", "Checkout", null, new { @class = "btn btn-md btn-success", @style = "color:#ffffff;" })
+}
+
+
+

@@ -1,0 +1,32 @@
+﻿@model dynamic
+
+@{
+    if (ViewBag.CountryList != null && ViewBag.CountOfList != null && ViewBag.CountryList.Length !=0)
+    {
+        var barChart = new BarChart();
+        barChart.ComplexData.Labels.AddRange(ViewBag.CountryList);
+        barChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
+                           {
+                               new ComplexDataset
+                                   {
+                                       Data = ViewBag.CountOfList,
+                                       Label = "List of Countries and count",
+                                       FillColor = "rgba(220,220,220,0.2)",
+                                       StrokeColor = "rgba(220,220,220,1)",
+                                       PointColor = "rgba(220,220,220,1)",
+                                       PointStrokeColor = "#fff",
+                                       PointHighlightFill = "#fff",
+                                       PointHighlightStroke = "rgba(220,220,220,1)",
+                                   }
+                           });
+
+        <h3>List of Countries and Statistics</h3>
+        <canvas id="myCanvas" style="width: 95%;"></canvas>
+        @Html.CreateChart("myCanvas", barChart)
+
+    }else
+    {
+        
+        <img src="~/Content/images/Chart_Results_Not_Availabe.jpg" />
+    }
+    }

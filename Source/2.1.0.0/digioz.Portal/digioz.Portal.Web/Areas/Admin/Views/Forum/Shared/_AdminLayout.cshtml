@@ -1,0 +1,126 @@
+﻿@using digioz.Portal.Domain.Constants
+@using digioz.Portal.Web.Application
+@{
+    ViewBag.Title = @ViewBag.Title;
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Head
+{
+    @Styles.Render("~/Content/forum")
+    @Styles.Render("~/Content/admin")
+    <script type="text/javascript">
+            var app_base = '@Url.Content("~/")';
+    </script>
+    @Scripts.Render("~/bundles/admin")
+    @RenderSection("AdminHeader", false)
+}
+
+
+<div class="container">
+
+    @Html.Partial("_GenericMessage")
+
+    <div class="row">
+
+        <div class="col-md-3">
+            @*<div id="logindisplay">
+                    @Html.Partial("_LogOnPartial")
+                </div>*@
+
+            <a href="#" class="btn btn-show-admin-nav">Show Admin Options</a>
+            <div class="admin-options">
+                <h6>Settings</h6>
+                <ul class="nav nav-tabs nav-stacked">
+                    <li>
+                        <a href="@Url.AdminAction("Index", "Settings")">
+                            <i class="glyphicon glyphicon-cog"></i>Configuration
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.AdminAction("Index", "AdminCategory")">
+                            <i class="glyphicon glyphicon-list-alt"></i>Categories
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.AdminAction("Index", "Permissions")">
+                            <i class="glyphicon glyphicon-lock"></i>Permissions
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.AdminAction("Index", "AdminLanguage")">
+                            <i class="glyphicon glyphicon-volume-up"></i>Language
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.AdminAction("Index", "AdminTag")">
+                            <i class="glyphicon glyphicon-tags"></i>Tags
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.AdminAction("Index", "AdminBadge")">
+                            <i class="glyphicon glyphicon-bookmark"></i>Badges
+                        </a>
+                    </li>
+                </ul>
+                <h6>Membership</h6>
+                <ul class="nav nav-tabs nav-stacked">
+                    <li>
+                        <a href="@Url.AdminAction("Manage", "ForumAccount")">
+                            <i class="glyphicon glyphicon-user"></i>Manage Users
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.AdminAction("ListAllRoles", "ForumAccount")"><i class="glyphicon glyphicon-flag"></i>Manage Roles</a>
+                    </li>
+                    <li>
+                        <a href="@Url.AdminAction("AddRole", "ForumAccount")"><i class="glyphicon glyphicon-plus"></i>Add Roles</a>
+                    </li>
+
+                </ul>
+                <h6>Tools</h6>
+                <ul class="nav nav-tabs nav-stacked">
+                    <li>
+                        <a href="@Url.AdminAction("Index", "ImportExport")">
+                            <i class="glyphicon glyphicon-random"></i>Import / Export
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.AdminAction("Index", "Batch")">
+                            <i class="glyphicon glyphicon-tasks"></i>Batch Tools
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.AdminAction("Index", "BannedEmail")">
+                            <i class="glyphicon glyphicon-ban-circle"></i>Ban Emails
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.AdminAction("Index", "BannedWord")">
+                            <i class="glyphicon glyphicon-text-width"></i>Ban Words
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.AdminAction("Index", "AdminLucene")">
+                            <i class="glyphicon glyphicon-fast-forward"></i>Lucene
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.AdminAction("Index", "Log")">
+                            <i class="glyphicon glyphicon-exclamation-sign"></i>Log
+                        </a>
+                    </li>
+                </ul>
+                @*@Html.Partial("_GetCurrentVersion")*@
+            </div>
+
+        </div>
+
+        <div class="col-md-9 mainadminbody">
+            @RenderBody()
+        </div>
+    </div>
+
+    <hr>
+
+</div>
+

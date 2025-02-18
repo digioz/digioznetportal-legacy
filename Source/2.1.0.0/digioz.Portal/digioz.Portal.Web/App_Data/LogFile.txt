@@ -1,0 +1,9 @@
+15/01/2019 14:59:41 | digioz.Portal.Web.dll | Application_Start | START APP
+14/04/2019 22:08:57 | digioz.Portal.Web.dll | Application_Start | START APP
+14/04/2019 22:22:04 | digioz.Portal.Web.dll | Application_Start | START APP
+14/04/2019 23:09:54 | digioz.Portal.Web.dll | Application_Start | START APP
+14/04/2019 23:12:06 | digioz.Portal.Web.dll | Application_Start | START APP
+14/04/2019 23:15:26 | digioz.Portal.Web.dll | Application_Start | START APP
+14/04/2019 23:17:14 | digioz.Portal.Web.dll | Application_Start | START APP
+14/04/2019 23:19:25 | digioz.Portal.Web.dll | Application_Start | START APP
+18/02/2025 17:06:07 | digioz.Portal.Web.dll | Application_Start | START APP

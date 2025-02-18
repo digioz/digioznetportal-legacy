@@ -1,0 +1,106 @@
+﻿@model IEnumerable<digioz.Portal.Domain.DomainModel.Menu>
+@using digioz.Portal.Web.Extensions
+@{
+    ViewBag.Title = "Menu Manager";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p>
+    <div class="btn btn-default">@Html.ActionLink("Create New", "Create")</div>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Controller)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Action)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.URL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Visible)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Timestamp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SortOrder)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Controller)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Action)
+        </td>
+        <td>
+            @if (!string.IsNullOrEmpty(item.URL))
+            {
+                <a href="@item.URL" target="_blank" style="border: 0px;">
+                    <img src="~/Content/images/icons/16x16/link-external-16.png" />
+                </a>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Visible)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timestamp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
+        </td>
+        <td>&nbsp;
+            @if (!(Model.First().SortOrder == item.SortOrder))
+            {
+                @Html.Raw(
+                 @Html.ActionImage("MoveUp", new { id = item.ID }, "~/Content/images/icons/arrow_up.png", imageAttributes: new { alt = "Up", @class = "icon" }, linkAttributes: new { title = "Up" }).ToString() 
+                )
+            }else
+            {
+                @Html.Raw(Html.ActionImage("",null,"~/Content/images/icons/blank_9.png"))
+            }            
+            @Html.Raw("<span class='text-md-right'>"+@Html.DisplayFor(modelItem => item.SortOrder)+"</span>" + "<br>&nbsp;")
+            @if (!(Model.Last().SortOrder == item.SortOrder))
+            {
+                @Html.Raw(
+                    @Html.ActionImage("MoveDown", new { id = item.ID }, "~/Content/images/icons/arrow_down.png", imageAttributes: new { alt = "Down", @class = "icon" }, linkAttributes: new { title = "Down" }).ToString()
+                )
+            }
+        </td>
+        <td style="width:100px;">
+            @Html.Raw(
+                Html.ActionImage("Details", new { id = item.ID }, "~/Content/images/icons/16x16/Search.png", imageAttributes: new { alt = "Details", @class = "icon" },
+                linkAttributes: new { title = "Details" }).ToString() + " " +
+                Html.ActionImage("Edit", new { id = item.ID }, "~/Content/images/icons/16x16/Edit.png", imageAttributes: new { alt = "Edit", @class = "icon" },
+                linkAttributes: new { title = "Edit" }).ToString() + " " +
+                Html.ActionImage("Delete", new { id = item.ID }, "~/Content/images/icons/16x16/Cancel.png", imageAttributes: new { alt = "Delete", @class = "icon" },
+                linkAttributes: new { title = "Delete" }).ToString()
+            )
+
+        </td>
+    </tr>
+}
+
+</table>

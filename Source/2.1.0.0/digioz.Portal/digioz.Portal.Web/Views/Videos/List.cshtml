@@ -1,0 +1,56 @@
+﻿@model PagedList.IPagedList<digioz.Portal.Domain.DomainModel.Video>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Video List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Video List</h2>
+
+<p>&nbsp;</p>
+
+<table style="width: 95%;">
+    <tr>
+        @{
+            int i = 0;
+
+            foreach (var item in Model)
+            {
+                <td>
+                    <div style="text-align: center; padding-bottom: 20px;">
+                        <a href="~/Content/Videos/Full/@item.Filename">
+                            <img class="img-thumbnail" alt="240x120" style="width: 240px; height: 120px;" src="~/Content/Videos/Thumb/@item.Thumbnail" border="0"/>
+                            <br/>
+                            @item.Description
+                        </a>
+                    </div>
+                </td>
+
+                i++;
+
+                if (i == 2)
+                {
+                    @:</tr><tr>
+                    i = 0;
+                }
+
+            }
+        }
+    </tr>
+
+</table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("List", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+<p>&nbsp;</p>
+
+<div style="text-align:center;">
+    @Html.ActionLink("Return to Index", "Index", "Videos")
+</div>
+
+
+<p>&nbsp;</p>

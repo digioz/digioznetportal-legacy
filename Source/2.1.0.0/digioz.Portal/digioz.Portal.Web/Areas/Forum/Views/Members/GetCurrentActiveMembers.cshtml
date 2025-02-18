@@ -1,0 +1,21 @@
+﻿@using digioz.Portal.Utilities
+@model digioz.Portal.Web.Areas.Forum.ViewModels.ActiveMembersViewModel
+
+@if (Model.ActiveMembers.Any())
+{
+    <ul class="activememberslist">
+        <li class="activememberslistheading">@Html.LanguageString("Stats.FooterActiveUsersText")</li>
+        @foreach (var member in Model.ActiveMembers)
+        {
+            var avatar = member.Profiles.First().Avatar;
+            if (string.IsNullOrEmpty(avatar)) { avatar = "Default.png"; }
+
+            <li>
+                <a title="@Html.Raw(member.UserName)" href="@member.NiceUrl">
+                    <img src="~/Content/Avatar/Thumb/@avatar" alt=" @Html.Raw(member.UserName) " />
+                </a>
+            </li>
+        }
+    </ul>
+    
+}

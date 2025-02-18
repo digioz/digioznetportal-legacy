@@ -1,0 +1,63 @@
+﻿@using System.Data
+@model digioz.Portal.Web.Areas.Admin.Models.DatabaseQueryViewModel
+
+@{
+    ViewBag.Title = "Query";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Query Database</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QueryString, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.QueryString, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.QueryString)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </div>
+
+    </div>
+}
+
+@if (Model != null && Model.DataTable != null)
+{
+    <div id="" style="overflow-y: scroll; width: 100%; height: 400px;">
+        <table class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    @foreach (DataColumn col in Model.DataTable.Columns)
+                    {
+                        <th>@col.ColumnName</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (DataRow row in Model.DataTable.Rows)
+                {
+                    <tr>
+                        @foreach (DataColumn col in Model.DataTable.Columns)
+                        {
+                            <td>@row[col.ColumnName]</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>

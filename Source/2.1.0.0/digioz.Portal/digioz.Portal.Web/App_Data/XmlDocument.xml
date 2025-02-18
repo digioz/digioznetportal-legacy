@@ -1,0 +1,1591 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>digioz.Portal.Web</name>
+    </assembly>
+    <members>
+        <member name="T:digioz.Portal.Web.Akismet.NET.Comment">
+            <summary>
+            This class defines an Akismet's comment format.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Akismet.NET.Comment.blog">
+            <summary>
+            The front page or home URL of the instance making the request. For a blog or wiki this would be the front page. Must be a full URI, including http://.
+            </summary>
+            <remarks>This property is required.</remarks>
+        </member>
+        <member name="P:digioz.Portal.Web.Akismet.NET.Comment.user_ip">
+            <summary>
+            IP address of the comment submitter.
+            </summary>
+            <remarks>This property is required.</remarks>
+        </member>
+        <member name="P:digioz.Portal.Web.Akismet.NET.Comment.user_agent">
+            <summary>
+            User agent string of the web browser submitting the comment - typically the HTTP_USER_AGENT cgi variable. Not to be confused with the user agent of your Akismet library.
+            </summary>
+            <remarks>This property is required.</remarks>
+        </member>
+        <member name="P:digioz.Portal.Web.Akismet.NET.Comment.referrer">
+            <summary>
+            The content of the HTTP_REFERER header should be sent here.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Akismet.NET.Comment.permalink">
+            <summary>
+            The permanent location of the entry the comment was submitted to.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Akismet.NET.Comment.comment_type">
+            <summary>
+            May be blank, comment, trackback, pingback, or a made up value like "registration".
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Akismet.NET.Comment.comment_author">
+            <summary>
+            Name submitted with the comment.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Akismet.NET.Comment.comment_author_email">
+            <summary>
+            Email address submitted with the comment.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Akismet.NET.Comment.comment_author_url">
+            <summary>
+            URL submitted with comment.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Akismet.NET.Comment.comment_content">
+            <summary>
+            The content that was submitted.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Akismet.NET.Comment.IsValid">
+            <summary>
+            Check is current comment is valid.
+            </summary>
+        </member>
+        <member name="T:digioz.Portal.Web.Akismet.NET.IValidator">
+            <summary>
+            It describes the public interface for the <see cref="T:digioz.Portal.Web.Akismet.NET.Validator"/> class.
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Akismet.NET.IValidator.VerifyKey(System.String)">
+            <summary>
+            Check if the validator's key is valid or not.
+            </summary>
+            <returns>True if the key is valid, false otherwise.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Akismet.NET.IValidator.IsSpam(digioz.Portal.Web.Akismet.NET.Comment)">
+            <summary>
+            Check if the input comment is valid or not.
+            </summary>
+            <param name="comment">The input comment to be checked.</param>
+            <returns>True if the comment is valid, false otherwise.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Akismet.NET.IValidator.SubmitSpam(digioz.Portal.Web.Akismet.NET.Comment)">
+            <summary>
+            Submit the input comment as spam.
+            </summary>
+            <param name="comment">The input comment to be sent as spam.</param>
+            <returns>True if the comment was successfully sent, false otherwise.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Akismet.NET.IValidator.SubmitHam(digioz.Portal.Web.Akismet.NET.Comment)">
+            <summary>
+            Submit the input comment as ham.
+            </summary>
+            <param name="comment">The input comment to be sent as ham.</param>
+            <returns>True if the comment was successfully sent, false otherwise.</returns>
+        </member>
+        <member name="T:digioz.Portal.Web.Akismet.NET.Validator">
+            <summary>
+            This class is responsible validating information against Akismet.
+            </summary>
+            <example>
+                Comment comment = new Comment
+                {
+                    blog = "Your-Akismet-Domain",
+                    comment_type = "comment",
+                    comment_author = "Sam Mulder",
+                    comment_author_email = "samm@gmail.com",
+                    comment_content = "Does this really working?",
+                    permalink = String.Empty,
+                    referrer = httpContext.Request.ServerVariables["HTTP_REFERER"],
+                    user_agent = httpContext.Request.ServerVariables["HTTP_USER_AGENT"],
+                    user_ip = httpContext.Request.ServerVariables["REMOTE_ADDR"]
+                };
+            
+                Validator validator = new Validator("Your-Akismet-Key");
+                if(validator.IsSpam(comment))
+                { // do something with the spam comment
+                }
+                else
+                { // this comment is not spam
+                }
+            </example>
+        </member>
+        <member name="F:digioz.Portal.Web.Akismet.NET.Validator.m_key">
+            <summary>
+            The Akismet key, if any.
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Akismet.NET.Validator.#ctor(System.String)">
+            <summary>
+            Initialize class members based on the input parameters
+            </summary>
+            <param name="key">The input Akismet key.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Akismet.NET.Validator.VerifyKey(System.String)">
+            <summary>
+            Check if the validator's key is valid or not.
+            </summary>
+            <returns>True if the key is valid, false otherwise.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Akismet.NET.Validator.IsSpam(digioz.Portal.Web.Akismet.NET.Comment)">
+            <summary>
+            Check if the input comment is valid or not.
+            </summary>
+            <param name="comment">The input comment to be checked.</param>
+            <returns>True if the comment is valid, false otherwise.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Akismet.NET.Validator.SubmitSpam(digioz.Portal.Web.Akismet.NET.Comment)">
+            <summary>
+            This call is for submitting comments that weren't marked as spam but should've been.
+            </summary>
+            <param name="comment">The input comment to be sent as spam.</param>
+            <returns>True if the comment was successfully sent, false otherwise.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Akismet.NET.Validator.SubmitHam(digioz.Portal.Web.Akismet.NET.Comment)">
+            <summary>
+            This call is intended for the marking of false positives, things that were incorrectly marked as spam.
+            </summary>
+            <param name="comment">The input comment to be sent as ham.</param>
+            <returns>True if the comment was successfully sent, false otherwise.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Akismet.NET.Validator.PostRequest(System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Post parameters to the input url and return the response.
+            </summary>
+            <param name="url">The input url (absolute).</param>
+            <param name="pars">The input parameters to send.</param>
+            <returns>The response, if any.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Akismet.NET.Validator.PreparePars(digioz.Portal.Web.Akismet.NET.Comment)">
+            <summary>
+            Prepare request parameters based on the input comment.
+            </summary>
+            <param name="comment">The input comment.</param>
+            <returns>The prepared parameters if any.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Akismet.NET.Validator.PreparePars(System.String,System.String)">
+            <summary>
+            Prepare request parameters based on the input parameters.
+            </summary>
+            <param name="key">The input key.</param>
+            <param name="domain">The input domain.</param>
+            <returns>The prepared parameters if any.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Akismet.NET.Validator.ExtractResult(System.String)">
+            <summary>
+            Check the input data for valid content: "valid" string or "true" string.
+            </summary>
+            <param name="content">The input content.</param>
+            <returns>True if the content is valid, false otherwise.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Application.AkismetHelper.IsSpam(digioz.Portal.Domain.DomainModel.Post)">
+            <summary>
+            Check whether a post is spam or not
+            </summary>
+            <param name="post"></param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Application.AkismetHelper.IsSpam(digioz.Portal.Domain.DomainModel.Topic)">
+            <summary>
+            Check whether a topic is spam or not
+            </summary>
+            <param name="topic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Application.AppHelpers.GetCurrentVersionNo">
+            <summary>
+            Gets the main version number (Used by installer)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Application.AppHelpers.GetCurrentVersionNoFull">
+            <summary>
+            Get the full version number shown in the admin
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Application.AppHelpers.ShowInstall">
+            <summary>
+            This checks whether the installer should be called, it stops people trying to call the installer
+            when the application is already installed
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Application.DatesUI.GetPrettyDate(System.String)">
+            <summary>
+            Returns a pretty date like Facebook
+            </summary>
+            <param name="date"></param>
+            <returns>28 Days Ago</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Application.Extensions.AdminActionLink(System.Web.Mvc.HtmlHelper,System.String,System.String,System.String)">
+            <summary>
+            Create an action link to an action in the Admin area.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:digioz.Portal.Web.Application.Extensions.Settings(System.Web.Mvc.HtmlHelper)" -->
+        <member name="M:digioz.Portal.Web.Application.Extensions.LanguageString(System.Web.Mvc.HtmlHelper,System.String)">
+            <summary>
+            Gets the specific language text from the language key
+            </summary>
+            <param name="helper"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Application.RssResult.#ctor(System.Collections.Generic.IEnumerable{digioz.Portal.Domain.DomainModel.RssItem},System.String,System.String)">
+            <summary>
+            Initialises the RssResult
+            </summary>
+            <param name="items">The items to be added to the rss feed.</param>
+            <param name="title">The title of the rss feed.</param>
+            <param name="description">A short description about the rss feed.</param>
+        </member>
+        <member name="T:digioz.Portal.Web.Application.WrappedJsonResult">
+            This is used to create an html "page" that is dropped into an iframe, as part
+            of the asynchronous server calls made during a file upload. The JSON data
+            placed in the page is the result information following processing
+            of the uploaded file.
+            Acknowledgement: http://www.dustinhorne.com/post/2011/11/16/AJAX-File-Uploads-with-jQuery-and-MVC-3.aspx
+        </member>
+        <member name="M:digioz.Portal.Web.IocConfig.RegisterComponents">
+            <summary>
+            Starts the application
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminBadgeController.#ctor(digioz.Portal.Domain.Interfaces.Services.IBadgeService,digioz.Portal.Domain.Interfaces.Services.ILoggingService,digioz.Portal.Domain.Interfaces.UnitOfWork.IUnitOfWorkManager,digioz.Portal.Domain.Interfaces.Services.IMembershipService,digioz.Portal.Domain.Interfaces.Services.ILocalizationService,digioz.Portal.Domain.Interfaces.Services.ISettingsService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="unitOfWorkManager"> </param>
+            <param name="membershipService"> </param>
+            <param name="localizationService"></param>
+            <param name="settingsService"> </param>
+            <param name="badgeService"> </param>
+            <param name="loggingService"> </param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminBadgeController.Index(System.Nullable{System.Int32},System.String)">
+            <summary>
+            We get here via the admin default layout (_AdminLayout). The returned view is displayed by
+            the @RenderBody in that layout
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.ForumManagerController.Index">
+            <summary>
+            Default page for the admin area
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.#ctor(digioz.Portal.Domain.Interfaces.Services.ILoggingService,digioz.Portal.Domain.Interfaces.UnitOfWork.IUnitOfWorkManager,digioz.Portal.Domain.Interfaces.Services.IMembershipService,digioz.Portal.Domain.Interfaces.Services.ILocalizationService,digioz.Portal.Domain.Interfaces.Services.ISettingsService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="loggingService"> </param>
+            <param name="unitOfWorkManager"> </param>
+            <param name="membershipService"> </param>
+            <param name="localizationService"></param>
+            <param name="settingsService"> </param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.ShowSuccess(System.String)">
+            <summary>
+            Create a message to be displayed when some action is successful
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.ShowError(System.String)">
+            <summary>
+            Create a message to be displayed as an error
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.ShowErrors(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Create a message to be displayed as an error from 
+            a set of messages
+            </summary>
+            <param name="messages"></param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.ListResourceKeys(System.Nullable{System.Int32},System.String)">
+            <summary>
+            List out resource keys and allow editing
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.GetLanguageResources(System.Boolean,System.Guid,System.Nullable{System.Int32},System.String)">
+            <summary>
+            Search through all resources for a language by page and search terms.
+            Search either by key or value.
+            </summary>
+            <param name="searchByKey">True means serach the keys else search the values</param>
+            <param name="languageId"></param>
+            <param name="p"></param>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.Index">
+            <summary>
+            We get here via the admin default layout (_AdminLayout). The returned view is displayed by
+            the @RenderBody in that layout
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.GetLanguages">
+            <summary>
+            Returns a partial view listing all languages
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.DeleteLanguageConfirmation(System.Guid)">
+            <summary>
+            Confirmation prompt when a user requests to delete a message
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.DeleteLanguage(System.String,System.String,System.Guid)">
+            <summary>
+            Request to delete a language (e.g. confirming on prompt)
+            </summary>
+            <param name="buttonYes"></param>
+            <param name="buttonNo"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.DeleteResourceConfirmation(System.Guid)">
+            <summary>
+            Request to delete a locale resource
+            </summary>
+            <param name="resourceKeyId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.DeleteResource(System.String,System.String,System.Guid)">
+            <summary>
+            Delete resource confirmation result
+            </summary>
+            <param name="buttonYes"></param>
+            <param name="buttonNo"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.CreateLanguage">
+            <summary>
+            Get - create a new language
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.CreateLanguage(digioz.Portal.Web.Areas.Admin.ViewModels.CreateLanguageViewModel)">
+            <summary>
+            Post - create a new language
+            </summary>
+            <param name="languageViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.ManageLanguageResourceValues(System.Guid,System.Nullable{System.Int32},System.String)">
+            <summary>
+            Manage resource values for a language
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.ManageLanguageResourceKeys(System.Guid,System.Nullable{System.Int32},System.String)">
+            <summary>
+            Manage resource values for a language
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.ManageResourceKeys(System.Nullable{System.Int32},System.String)">
+            <summary>
+            Manage resource keys (for all languages)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.UpdateResourceValue(digioz.Portal.Web.Areas.Admin.ViewModels.AjaxEditLanguageValueViewModel)">
+            <summary>
+            Edit a resource
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.UpdateResourceKey(digioz.Portal.Web.Areas.Admin.ViewModels.AjaxEditLanguageKeyViewModel)">
+            <summary>
+            Edit a resource key
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.EditAll(System.Guid)">
+            <summary>
+            Edit a resource in all languages
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.AdminLanguageController.AddResourceKey">
+            <summary>
+            Add a new resource
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.BannedEmailController.#ctor(digioz.Portal.Domain.Interfaces.Services.ILoggingService,digioz.Portal.Domain.Interfaces.UnitOfWork.IUnitOfWorkManager,digioz.Portal.Domain.Interfaces.Services.IMembershipService,digioz.Portal.Domain.Interfaces.Services.ILocalizationService,digioz.Portal.Domain.Interfaces.Services.ISettingsService,digioz.Portal.Domain.Interfaces.Services.IBannedEmailService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="unitOfWorkManager"> </param>
+            <param name="membershipService"></param>
+            <param name="localizationService"> </param>
+            <param name="settingsService"> </param>
+            <param name="loggingService"> </param>
+            <param name="bannedEmailService"></param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.BannedEmailController.AjaxUpdateEmail(digioz.Portal.Web.Areas.Admin.ViewModels.AjaxEditEmailViewModel)">
+            <summary>
+            Edit a resource key
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.BannedWordController.#ctor(digioz.Portal.Domain.Interfaces.Services.ILoggingService,digioz.Portal.Domain.Interfaces.UnitOfWork.IUnitOfWorkManager,digioz.Portal.Domain.Interfaces.Services.IMembershipService,digioz.Portal.Domain.Interfaces.Services.ILocalizationService,digioz.Portal.Domain.Interfaces.Services.ISettingsService,digioz.Portal.Domain.Interfaces.Services.IBannedWordService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="unitOfWorkManager"> </param>
+            <param name="membershipService"></param>
+            <param name="localizationService"> </param>
+            <param name="settingsService"> </param>
+            <param name="loggingService"> </param>
+            <param name="bannedWordService"></param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.BannedWordController.AjaxUpdateWord(digioz.Portal.Web.Areas.Admin.ViewModels.AjaxEditWordViewModel)">
+            <summary>
+            Edit a resource key
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.Admin.Controllers.BaseAdminController">
+            <summary>
+            A base class for the white site controllers
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.BaseAdminController.#ctor(digioz.Portal.Domain.Interfaces.Services.ILoggingService,digioz.Portal.Domain.Interfaces.UnitOfWork.IUnitOfWorkManager,digioz.Portal.Domain.Interfaces.Services.IMembershipService,digioz.Portal.Domain.Interfaces.Services.ILocalizationService,digioz.Portal.Domain.Interfaces.Services.ISettingsService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="loggingService"> </param>
+            <param name="unitOfWorkManager"> </param>
+            <param name="membershipService"></param>
+            <param name="localizationService"> </param>
+            <param name="settingsService"> </param>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.Admin.Controllers.BaseAdminController.LoggedOnUser">
+            <summary>
+            Return the currently logged on user
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.ForumAccountController.#ctor(digioz.Portal.Domain.Interfaces.Services.ILoggingService,digioz.Portal.Domain.Interfaces.UnitOfWork.IUnitOfWorkManager,digioz.Portal.Domain.Interfaces.Services.IMembershipService,digioz.Portal.Domain.Interfaces.Services.ILocalizationService,digioz.Portal.Domain.Interfaces.Services.IRoleService,digioz.Portal.Domain.Interfaces.Services.ISettingsService,digioz.Portal.Domain.Interfaces.Services.IPostService,digioz.Portal.Domain.Interfaces.Services.ITopicService,digioz.Portal.Domain.Interfaces.Services.IMembershipUserPointsService,digioz.Portal.Domain.Interfaces.Services.IActivityService,digioz.Portal.Domain.Interfaces.Services.IPollService,digioz.Portal.Domain.Interfaces.Services.IPollVoteService,digioz.Portal.Domain.Interfaces.Services.IPollAnswerService,digioz.Portal.Domain.Interfaces.Services.IUploadedFileService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="unitOfWorkManager"> </param>
+            <param name="membershipService"></param>
+            <param name="localizationService"> </param>
+            <param name="roleService"> </param>
+            <param name="settingsService"> </param>
+            <param name="loggingService"> </param>
+            <param name="postService"> </param>
+            <param name="topicService"> </param>
+            <param name="membershipUserPointsService"> </param>
+            <param name="activityService"> </param>
+            <param name="pollService"> </param>
+            <param name="pollVoteService"> </param>
+            <param name="pollAnswerService"> </param>
+            <param name="uploadedFileService"></param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.ForumAccountController.UpdateUserRoles(digioz.Portal.Domain.DomainModel.MembershipUser,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Take a set of role names and update a user's collection of roles accordingly
+            </summary>
+            <param name="user"></param>
+            <param name="updatedRoles"></param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.ForumAccountController.ListUsers(System.Nullable{System.Int32},System.String)">
+            <summary>
+            List out users and allow editing
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.ForumAccountController.Manage(System.Nullable{System.Int32},System.String)">
+            <summary>
+            Manage users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.ImportExportController.#ctor(digioz.Portal.Domain.Interfaces.Services.ILoggingService,digioz.Portal.Domain.Interfaces.UnitOfWork.IUnitOfWorkManager,digioz.Portal.Domain.Interfaces.Services.IMembershipService,digioz.Portal.Domain.Interfaces.Services.ILocalizationService,digioz.Portal.Domain.Interfaces.Services.ISettingsService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="unitOfWorkManager"> </param>
+            <param name="membershipService"> </param>
+            <param name="localizationService"></param>
+            <param name="settingsService"> </param>
+            <param name="loggingService"> </param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.ImportExportController.ToJSON(digioz.Portal.Domain.DomainModel.CsvReport)">
+            <summary>
+            Convert an import report into JSON data
+            </summary>
+            <param name="report"></param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.ImportExportController.Index">
+            <summary>
+            We get here via the admin default layout (_AdminLayout). The returned view is displayed by
+            the @RenderBody in that layout
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.ImportExportController.ExportUsers">
+            <summary>
+            Export a language in csv format
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.ImportExportController.ImportUsers(System.Web.HttpPostedFileBase)">
+            <summary>
+            Post of data for users import (file info)
+            </summary>
+            <param name="file">The name-value pairs for the language content</param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.ImportExportController.ExportLanguage(System.String)">
+            <summary>
+            Export a language in csv format
+            </summary>
+            <param name="languageCulture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.ImportExportController.ImportLanguage(System.String,System.Web.HttpPostedFileBase)">
+            <summary>
+            Post of data for language import (file info)
+            </summary>
+            <param name="languageCulture">This defines the name etc of the imported language</param>
+            <param name="file">The name-value pairs for the language content</param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.PermissionsController.Index">
+            <summary>
+            List of roles to apply permissions to
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.PermissionsController.EditPermissions(System.String)">
+            <summary>
+            Add / Remove permissions for a role on each category
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Admin.Controllers.PermissionsController.AddType">
+            <summary>
+            Add a new permission type into the permission table
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.Admin.ViewModels.CreateLanguageViewModel">
+            <summary>
+            Creation of a new language
+            </summary>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.Admin.ViewModels.AllResourceValuesViewModel">
+            <summary>
+            Holds all the different language variant values for a given key
+            </summary>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.Admin.ViewModels.LanguageListResourcesViewModel">
+            <summary>
+            All resource values for a language
+            </summary>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.Admin.ViewModels.BackupToXMLViewModel">
+            <summary>
+            View Model Class for exporting the records
+            in database tables to XML files
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Forum.Controllers.BadgeController.#ctor(digioz.Portal.Domain.Interfaces.Services.ILoggingService,digioz.Portal.Domain.Interfaces.UnitOfWork.IUnitOfWorkManager,digioz.Portal.Domain.Interfaces.Services.IBadgeService,digioz.Portal.Domain.Interfaces.Services.IPostService,digioz.Portal.Domain.Interfaces.Services.IMembershipService,digioz.Portal.Domain.Interfaces.Services.ILocalizationService,digioz.Portal.Domain.Interfaces.Services.IRoleService,digioz.Portal.Domain.Interfaces.Services.ISettingsService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="badgeService"> </param>
+            <param name="loggingService"> </param>
+            <param name="unitOfWorkManager"> </param>
+            <param name="postService"> </param>
+            <param name="membershipService"> </param>
+            <param name="localizationService"></param>
+            <param name="roleService"> </param>
+            <param name="settingsService"> </param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Forum.Controllers.CategoryController.#ctor(digioz.Portal.Domain.Interfaces.Services.ILoggingService,digioz.Portal.Domain.Interfaces.UnitOfWork.IUnitOfWorkManager,digioz.Portal.Domain.Interfaces.Services.IMembershipService,digioz.Portal.Domain.Interfaces.Services.ILocalizationService,digioz.Portal.Domain.Interfaces.Services.IRoleService,digioz.Portal.Domain.Interfaces.Services.ICategoryService,digioz.Portal.Domain.Interfaces.Services.ISettingsService,digioz.Portal.Domain.Interfaces.Services.ITopicService,digioz.Portal.Domain.Interfaces.Services.ICategoryNotificationService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="loggingService"> </param>
+            <param name="unitOfWorkManager"> </param>
+            <param name="membershipService"></param>
+            <param name="localizationService"></param>
+            <param name="roleService"></param>
+            <param name="categoryService"></param>
+            <param name="settingsService"> </param>
+            <param name="topicService"> </param>
+            <param name="categoryNotificationService"> </param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Forum.Controllers.ClosedController.Index">
+            <summary>
+            This is called when the forum is closed
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Forum.Controllers.LanguageController.#ctor(digioz.Portal.Domain.Interfaces.Services.ILoggingService,digioz.Portal.Domain.Interfaces.UnitOfWork.IUnitOfWorkManager,digioz.Portal.Domain.Interfaces.Services.IMembershipService,digioz.Portal.Domain.Interfaces.Services.ILocalizationService,digioz.Portal.Domain.Interfaces.Services.IRoleService,digioz.Portal.Domain.Interfaces.Services.ISettingsService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="unitOfWorkManager"> </param>
+            <param name="membershipService"></param>
+            <param name="localizationService"></param>
+            <param name="roleService"></param>
+            <param name="settingsService"> </param>
+            <param name="loggingService"> </param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Forum.Controllers.LanguageController.Index">
+            <summary>
+            Lists out all languages in a partial view. For example, used to display list of 
+            available languages along the top of every page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Forum.Controllers.LanguageController.ChangeLanguage(System.Guid)">
+            <summary>
+            Change the current language (typically called from each language link generated in this controller's index method)
+            </summary>
+            <param name="lang"></param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.Forum.Controllers.MembersController.GetMemberDiscussions(System.String)">
+            <summary>
+            Add a new user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:digioz.Portal.Web.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:digioz.Portal.Web.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:digioz.Portal.Web.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:digioz.Portal.Web.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:digioz.Portal.Web.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:digioz.Portal.Web.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,digioz.Portal.Web.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,digioz.Portal.Web.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:digioz.Portal.Web.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},digioz.Portal.Web.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey.#ctor(digioz.Portal.Web.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,digioz.Portal.Web.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:digioz.Portal.Web.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:digioz.Portal.Web.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:digioz.Portal.Web.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:digioz.Portal.Web.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:digioz.Portal.Web.Controllers.BaseController">
+            <summary>
+            A base class for the white site controllers
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Controllers.BaseController.#ctor(digioz.Portal.Domain.Interfaces.Services.ILoggingService,digioz.Portal.Domain.Interfaces.UnitOfWork.IUnitOfWorkManager,digioz.Portal.Domain.Interfaces.Services.IMembershipService,digioz.Portal.Domain.Interfaces.Services.ILocalizationService,digioz.Portal.Domain.Interfaces.Services.IRoleService,digioz.Portal.Domain.Interfaces.Services.ISettingsService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="loggingService"> </param>
+            <param name="unitOfWorkManager"> </param>
+            <param name="membershipService"></param>
+            <param name="localizationService"> </param>
+            <param name="roleService"> </param>
+            <param name="settingsService"> </param>
+        </member>
+        <member name="M:digioz.Portal.Web.Controllers.V1.AccountController.Login(System.String,System.String)">
+            <summary>
+            Logins the specified user using the username
+            and password passed into the service method
+            </summary>
+            <param name="username">The username.</param>
+            <param name="password">The password.</param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Controllers.V1.AccountController.Register(System.String,System.String,System.String)">
+            <summary>
+            Registers the specified user with a new portal account 
+            using the username, password and email passed into the 
+            service method. 
+            </summary>
+            <param name="username">The username.</param>
+            <param name="password">The password.</param>
+            <param name="email">The email.</param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Controllers.V1.MenuController.GetMenuItems(System.String)">
+            <summary>
+            Gets a list of menu items based on the menu
+            position passed into the service method. For
+            example if you pass in "TopMenu" for the position
+            parameter, you will get a list of Top menu items. 
+            </summary>
+            <param name="position">The position.</param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Controllers.V1.MenuController.GetAllMenuItems">
+            <summary>
+            Gets a list of ALL menu items in the system, regardless
+            of their position. Use this option if you would rather 
+            fetch all the menu items in one call and do the sorting 
+            and filtering of the menu items on the Client side. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Controllers.V1.PageController.GetPage(System.String)">
+            <summary>
+            Gets a specific page based on the URL relative 
+            path passed in. For example you can use the 
+            relative url /Home/Index to fetch the contents
+            of the Home Index page. 
+            </summary>
+            <param name="url">The URL.</param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Controllers.V1.PageController.GetAllPages">
+            <summary>
+            Gets the contents of ALL pages currently
+            in the system. Use this call sparengly,
+            since the results of this call can add up
+            very quickly depending on the number of pages
+            that are in the system. The body of the page 
+            will always be an HTML string. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Controllers.V1.PingController.Version">
+            <summary>
+            Gets the API Version
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Controllers.V1.PingController.About">
+            <summary>
+            Gets some general information about the Portal
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="T:digioz.Portal.Web.Helpers.BackupHelper">
+            <summary>
+            Helper Class for backing up and restoring
+            both databases and files
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.BackupHelper.BackupDatabaseToXml(digioz.Portal.Web.Areas.Admin.ViewModels.BackupToXMLViewModel)">
+            <summary>
+            Method to backup all selected table contents to XML files
+            stored in the App_Data folder of the site
+            </summary>
+            <param name="backup"></param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.BackupHelper.RestoreDatabaseFromXml(digioz.Portal.Web.Areas.Admin.ViewModels.RestoreFromXMLViewModel)">
+            <summary>
+            Method to restore all selected table files from the App_Data's 
+            selected Export Folder to the Database tables. As part of this
+            import, all existing table contents are deleted and the new content 
+            is inserted into the tables.
+            </summary>
+            <param name="backup"></param>
+            <returns></returns>
+        </member>
+        <member name="T:digioz.Portal.Web.Helpers.HtmlRemoval">
+            <summary>
+            Methods to remove HTML from strings.
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.HtmlRemoval.StripTagsRegex(System.String)">
+            <summary>
+            Remove HTML from string with Regex.
+            </summary>
+        </member>
+        <member name="F:digioz.Portal.Web.Helpers.HtmlRemoval._htmlRegex">
+            <summary>
+            Compiled regular expression for performance.
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.HtmlRemoval.StripTagsRegexCompiled(System.String)">
+            <summary>
+            Remove HTML from string with compiled Regex.
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.HtmlRemoval.StripTagsCharArray(System.String)">
+            <summary>
+            Remove HTML tags from string using char array.
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.HtmlRemoval.Truncate(System.String,System.Int32)">
+            <summary>
+            Trim a string to a maximum value
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.HtmlRemoval.TruncateDotDotDot(System.String,System.Int32)">
+            <summary>
+            Trim a string to a maximum value and add ...
+            </summary>
+        </member>
+        <member name="T:digioz.Portal.Web.Helpers.MSSQL">
+            <summary>
+            MSSQL Database Communication Class
+            </summary>
+        </member>
+        <member name="F:digioz.Portal.Web.Helpers.MSSQL.DS">
+            <summary>
+            DataSet for Storing Results
+            </summary>
+        </member>
+        <member name="F:digioz.Portal.Web.Helpers.MSSQL.DA">
+            <summary>
+            Data Adapter for storing data
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.#ctor">
+            <summary>
+            Class Constructor
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.openConnection">
+            <summary>
+            Method to open connection to Database
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.closeConnection">
+            <summary>
+            Method to close Database Connection
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.QueryDBDataset(System.String)">
+            <summary>
+            Method to Query Database and Obtain Data Table
+            </summary>
+            <param name="sql">SQL String</param>
+            <returns>Data Table</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.QueryDBDataset(System.String,System.Data.Common.DbParameter[])">
+            <summary>
+            Method to Query Database and Obtain Data Table
+            </summary>
+            <param name="sql">SQL String</param>
+            <param name="par">Parameter Object</param>
+            <returns>Data Table</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL._QueryDBDataset(System.String,System.Data.Common.DbParameter[])">
+            <summary>
+            Method to Query Database and Obtain Data Table
+            </summary>
+            <param name="sql">SQL String</param>
+            <param name="par">Parameter Object</param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.QueryDBDatasetProc(System.String,System.Int32@,System.Data.Common.DbParameter[])">
+            <summary>
+            Method to Query Database and Obtain Data Table with Proc Support
+            </summary>
+            <param name="sql">SQL String</param>
+            <param name="count">Count</param>
+            <param name="par">Parameter Object</param>
+            <returns>Data Table</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.GetDBDataset(System.String,System.String)">
+            <summary>
+            Method to Obtain Data Table with specific connection string
+            </summary>
+            <param name="sql">SQL String</param>
+            <param name="connectionString">Database Connection String</param>
+            <returns>Data Table</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.ExecDBScalar(System.String)">
+            <summary>
+            Method to execute SQL Statement in Scalar Mode
+            </summary>
+            <param name="sql">SQL Statement</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.ExecDBScalar(System.String,System.Data.SqlClient.SqlTransaction)">
+            <summary>
+            Method to execute SQL Statement in Scalar Mode
+            </summary>
+            <param name="sql">SQL Statement</param>
+            <param name="openTransaction">SQL Transaction Object</param>
+            <returns>object</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.ExecDBScalar(System.String,System.Data.Common.DbParameter[])">
+            <summary>
+            Method to execute SQL Statement in Scalar Mode
+            </summary>
+            <param name="sql">SQL Statement</param>
+            <param name="par">Parameter Object</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.ExecDBScalar(System.String,System.Data.Common.DbParameter[],System.Data.SqlClient.SqlTransaction)">
+            <summary>
+            Method to Execute SQL Command in Scalar Mode
+            </summary>
+            <param name="sql">SQL String</param>
+            <param name="par">Parameter Object</param>
+            <param name="openTransaction">SQL Transaction Object</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.ExecDBScalarProc(System.String,System.Data.Common.DbParameter[])">
+            <summary>
+            Method to Execute SQL Command in Scalar Mode with Proc
+            </summary>
+            <param name="procName">Procedure Name</param>
+            <param name="par">Parameter Object</param>
+            <returns>object</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.ExecDBScalarProc(System.String,System.Data.Common.DbParameter[],System.Data.SqlClient.SqlTransaction)">
+            <summary>
+            Method to Execute SQL Command in Scalar Mode with Proc
+            </summary>
+            <param name="procName">Procedure Name</param>
+            <param name="par">Parameter object</param>
+            <param name="openTransaction">SQL Transaction Object</param>
+            <returns>object</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL._ExecDBScalarProc(System.String,System.Data.Common.DbParameter[],System.Data.SqlClient.SqlTransaction)">
+            <summary>
+            Method to Execute SQL Command in Scalar Mode with Proc
+            </summary>
+            <param name="procName">Procedure Name</param>
+            <param name="par">Parameter Object</param>
+            <param name="openTransaction">SQL Transaction Object</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL._ExecDBScalarProc(System.String,System.Data.Common.DbParameter[])">
+            <summary>
+            Method to Execute SQL Command in Scalar Mode with Proc
+            </summary>
+            <param name="procName">Procedure Name</param>
+            <param name="par">Parameter Object</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL._ExecDBScalar(System.String,System.Data.Common.DbParameter[])">
+            <summary>
+            Method to Execute SQL Command in Scalar Mode with Proc
+            </summary>
+            <param name="sql">SQL String</param>
+            <param name="par">Parameter Object</param>
+            <returns>object</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL._ExecDBScalar(System.String,System.Data.Common.DbParameter[],System.Data.SqlClient.SqlTransaction)">
+            <summary>
+            Method to Execute SQL Command in Scalar Mode with Proc
+            </summary>
+            <param name="sql">SQL String</param>
+            <param name="par">Parameter Object</param>
+            <param name="openTransaction">SQL Transaction Object</param>
+            <returns>object</returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.ExecDB(System.String)">
+            <summary>
+            Execute SQL Query No Return
+            </summary>
+            <param name="sql">SQL String</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.ExecDB(System.String,System.Data.SqlClient.SqlTransaction)">
+            <summary>
+            Execute SQL Query No Return
+            </summary>
+            <param name="sql">SQL String</param>
+            <param name="openTransaction">SQL Transaction Object</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.ExecDB(System.String,System.Int32@,System.Data.Common.DbParameter[])">
+            <summary>
+            Execute SQL Query No Return
+            </summary>
+            <param name="sql">SQL String</param>
+            <param name="count">Count</param>
+            <param name="par">Parameter Object</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.ExecDB(System.String,System.Int32@,System.Data.Common.DbParameter[],System.Data.SqlClient.SqlTransaction)">
+            <summary>
+            Execute SQL Query No Return
+            </summary>
+            <param name="sql">SQL String</param>
+            <param name="count">Count</param>
+            <param name="par">Parameter Object</param>
+            <param name="openTransaction">SQL Transaction Object</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL._ExecDB(System.String,System.Int32@,System.Data.Common.DbParameter[])">
+            <summary>
+            Execute SQL Query No Return
+            </summary>
+            <param name="sql">SQL String</param>
+            <param name="count">Count</param>
+            <param name="par">Parameter Object</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL._ExecDB(System.String,System.Int32@,System.Data.Common.DbParameter[],System.Data.SqlClient.SqlTransaction)">
+            <summary>
+            Execute SQL Query No Return
+            </summary>
+            <param name="sql">SQL String</param>
+            <param name="count">Count</param>
+            <param name="par">Parameter Object</param>
+            <param name="openTransaction">SQL Transaction String</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.UpdateDBDataset">
+            <summary>
+            Update Data Table Method
+            </summary>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.DeleteDBDataset(System.Int32)">
+            <summary>
+            Delete Data Table Method
+            </summary>
+            <param name="primarykey">Primary Key</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.CreateDatabase(System.String)">
+            <summary>
+            Create Database Method
+            </summary>
+            <param name="databaseName">Database Name</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.ExecDBProc(System.String,System.Int32@,System.Data.Common.DbParameter[],System.Data.SqlClient.SqlTransaction)">
+            <summary>
+            Execute DB SP with existing transaction
+            </summary>
+            <param name="sql">SQL String</param>
+            <param name="count">Count</param>
+            <param name="par">Parameter Object</param>
+            <param name="poTransaction">SQL Transaction Object</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.ExecDBProc(System.String,System.Int32@,System.Data.Common.DbParameter[])">
+            <summary>
+            Execute SQL Query Proc
+            </summary>
+            <param name="sql">SQL String</param>
+            <param name="count">Count</param>
+            <param name="par">Parameter Object</param>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.BulkImportData(System.Data.DataTable,System.String)">
+            <summary>
+            Method to bulk import data in a datatable
+            into the database chosen
+            </summary>
+            <param name="dt"></param>
+            <param name="tableName"></param>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.MSSQL.Dispose">
+            <summary>
+            Dispose of all IDisposable Objects
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:digioz.Portal.Web.Helpers.Utility.BindList``1(System.Data.DataTable)" -->
+        <member name="M:digioz.Portal.Web.Helpers.Utility.BindObject``1(System.Data.DataTable)">
+            <summary>
+            Generic function to Bind a POCO object
+            with the values stored in a DataTable.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dt">The dt.</param>
+            <returns></returns>
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.Utility.GetFoldersInDirectory(System.String,System.String,System.Boolean)">
+            <summary>
+            Function to get either a list of subfolders in 
+            a directory that match a pattern or all of them
+            </summary>
+            <param name="path"></param>
+            <param name="pattern"></param>
+            <param name="returnFullPath"></param>
+            <returns></returns>
+            Usage 1: GetFolderInDirectory(@"C:\Temp\", "foo");
+            Usage 2: GetFolderInDIrectory(@"C:\Temp\");
+        </member>
+        <member name="M:digioz.Portal.Web.Helpers.Utility.GetRSSFeeds">
+            <summary>
+            Helper Class which reads RSS Feeds URL from the Database
+            and fetches the contents of them returning a List of Content Objects
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

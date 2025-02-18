@@ -1,0 +1,48 @@
+﻿@model digioz.Portal.Web.Areas.Admin.Models.DatabaseBackupViewModel
+
+@{
+    ViewBag.Title = "Backup";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Backup</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                <strong>Error: </strong> @TempData["Error"]
+            </div>
+        }
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">
+                <strong>Success: </strong>@TempData["Success"]
+            </div>
+        }
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Databases">Database Name:</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.DatabaseName, Model.Databases, String.Empty)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Backup" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

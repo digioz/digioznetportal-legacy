@@ -1,0 +1,23 @@
+﻿@using digioz.Portal.Utilities
+@using digioz.Portal.Web.Application
+@model digioz.Portal.Web.Areas.Forum.ViewModels.ViewPrivateMessageViewModel
+
+@{
+    ViewBag.Title = "Private Message Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Message.Subject</h2>
+<p class="privatemessagefrom"><strong>From</strong> <a href="@Model.Message.UserFrom.NiceUrl">@Model.Message.UserFrom.UserName</a></p>
+<p class="privatemessagesent"><strong>Date Sent</strong> @Model.Message.DateSent.ToShortDateString()</p>
+
+<p class="privatemessagecontent">
+    @Html.Raw(AppHelpers.ConvertPostContent(Model.Message.Message))
+</p>
+
+<div class="btn-group">
+    @Html.ActionLink("Back to Inbox", "Index", new { }, new { @class = "btn btn-xs btn-primary" })
+    <span style="padding: 10px;">&nbsp;&nbsp;</span>
+    @Html.ActionLink("Create PM", "Create", "PrivateMessages", null, new { @class = "btn btn-xs btn-primary" })
+</div>
+
