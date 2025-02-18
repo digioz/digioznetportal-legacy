@@ -1,0 +1,145 @@
+﻿@model digioz.Portal.Domain.DomainModel.VisitorInfo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Visitor Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IPAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IPAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PageURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReferringURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReferringURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrowserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrowserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrowserType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrowserType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrowserUserAgent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrowserUserAgent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrowserVersion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrowserVersion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCrawler)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCrawler)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JSVersion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JSVersion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OperatingSystem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OperatingSystem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Keywords)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Keywords)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SearchEngine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SearchEngine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Language)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Language)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Timestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Timestamp)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

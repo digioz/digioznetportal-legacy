@@ -1,0 +1,1 @@
+﻿This folder is for storing Database backup files.

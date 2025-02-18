@@ -1,0 +1,45 @@
+﻿@model IEnumerable<digioz.Portal.Domain.DomainModel.VisitorInfo>
+@using digioz.Portal.Web.Extensions
+@using digioz.Portal.Web.Helpers
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10);
+}
+
+<h2>Statistics Manager</h2>
+
+<p>
+    <div class="btn btn-default">@Html.ActionLink("Purge", "Purge")</div>
+    <div class="btn btn-default">@Html.ActionLink("Export", "Export")</div>
+</p>
+
+
+<p style="width: 100%; text-align: center;">
+        @Html.Partial("VisitorCountryChart")
+</p>
+
+@grid.GetHtml(
+        tableStyle: "gridtable table table-bordered",
+    columns: new[] {
+    grid.Column("ID"),
+    grid.Column("IPAddress", "IP"),
+    grid.Column("Country"),
+    grid.Column("Timestamp"),
+    grid.Column("PageURL", "Page URL",
+        format: @<text>
+                    @HtmlRemoval.TruncateDotDotDot(item.PageURL, 30)
+                 </text>
+    ),
+    grid.Column("",
+                header: "Actions",
+                format: @<text>
+                    @Html.Raw(
+                        Html.ActionImage("Details", new {id = item.ID}, "~/Content/images/icons/16x16/Search.png", imageAttributes: new {alt = "Details", @class = "icon"},
+                            linkAttributes: new {title = "Details"}).ToString() + " " +
+                        Html.ActionImage("Delete", new { id = item.ID }, "~/Content/images/icons/16x16/Cancel.png", imageAttributes: new { alt = "Delete", @class = "icon" },
+                            linkAttributes: new { title = "Delete" }).ToString()
+                    )
+                </text>
+                )
+})

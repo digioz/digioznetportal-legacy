@@ -1,0 +1,78 @@
+﻿@using digioz.Portal.Domain.Constants
+@using digioz.Portal.Web.Application
+@model digioz.Portal.Web.Areas.Admin.ViewModels.ResourceKeyListViewModel
+@{
+    ViewBag.Title = "List Keys";
+}
+
+@section AdminHeader
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+@Html.Partial("_LanguageOptions")
+<h2>
+    All Resource Keys
+</h2>
+@using (Html.BeginForm("ManageResourceKeys", "AdminLanguage", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    <div class="search large-search input-append">
+        @Html.TextBoxFor(x => @Model.Search)
+        <button class="btn">
+            Search</button>
+        @Html.HiddenFor(x => x.PageIndex)
+    </div>
+}
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Edit
+            </th>
+            <th>
+                Resource Key
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var resource in Model.ResourceKeys)
+        {
+           
+            <tr>
+                <td class="languageresourcecell">
+                    <span class="editresourcekey">
+                        <a href="#" class="btn btn-small">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                    </span>
+                    <span class="saveresourcekey" style="display: none;">
+                        <a href="#" class="btn btn-small">
+                            <i class="glyphicon glyphicon-ok"></i>
+                        </a>
+                    </span>
+                </td>
+                <td class="resourcekeyvalue">
+                    <strong>
+                        <span class="resourcekeyvaluedisplay">
+                                  @Html.DisplayFor(modelItem => resource.Name)
+                        </span>
+                        <span class="resourcekeyvalueedit" style="display: none;">
+                            <input data-resourcekeyid="@resource.Id" data-oldvalue="@resource.Name"
+                                   type="text" id="@resource.Id" value="@resource.Name" class="resourcekeyinput"/>
+                        </span>
+                    </strong>
+                </td>
+                <td>
+                    <a href="@Url.Action("DeleteResourceConfirmation", new { resourceKeyId = resource.Id })" class="btn btn-small">
+                        <i class="glyphicon glyphicon-remove"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.Pager(Convert.ToInt32(Model.PageIndex), AppConstants.AdminListPageSize, Convert.ToInt32(Model.TotalCount), new { search = Model.Search })
+

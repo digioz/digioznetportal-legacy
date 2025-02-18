@@ -1,0 +1,60 @@
+﻿@model IEnumerable<digioz.Portal.Domain.DomainModel.Config>
+@using digioz.Portal.Web.Extensions
+@{
+    ViewBag.Title = "Configuration Manager";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@if (TempData["Results"] != null)
+{
+    <div class="alert alert-success">@TempData["Results"]</div>
+}
+
+<h5>Please use the Grid below to add, edit or delete Configuration Keys:</h5>
+
+<p>&nbsp;</p>
+
+<p>
+    <div class="btn btn-default">@Html.ActionLink("Create New", "Create")</div>
+    <div class="btn btn-default">@Html.ActionLink("Clear Cache", "ClearCache")</div>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ConfigKey)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConfigValue)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConfigKey)
+        </td>
+        <td style="max-width:200px;word-wrap: break-word;">
+            @if (item.IsEncrypted)
+            {
+                <span>[XXX]</span>
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.ConfigValue)
+            }
+        </td>
+        <td style="width:100px;">
+            @Html.Raw(
+                Html.ActionImage("Details", new { id = item.ID }, "~/Content/images/icons/16x16/Search.png", imageAttributes: new { alt = "Details", @class = "icon" },
+                linkAttributes: new { title = "Details" }).ToString() + " " +
+                Html.ActionImage("Edit", new { id = item.ID }, "~/Content/images/icons/16x16/Edit.png", imageAttributes: new { alt = "Edit", @class = "icon" },
+                linkAttributes: new { title = "Edit" }).ToString() + " " +
+                Html.ActionImage("Delete", new { id = item.ID }, "~/Content/images/icons/16x16/Cancel.png", imageAttributes: new { alt = "Delete", @class = "icon" },
+                linkAttributes: new { title = "Delete" }).ToString()
+            )
+        </td>
+    </tr>
+}
+
+</table>

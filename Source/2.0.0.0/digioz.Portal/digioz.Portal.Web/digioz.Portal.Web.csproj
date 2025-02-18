@@ -1,0 +1,2363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{75579A0E-E682-4B1C-8631-220DD364A874}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>digioz.Portal.Web</RootNamespace>
+    <AssemblyName>digioz.Portal.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>App_Data/XmlDocument.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Chart.Mvc, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Chart.Mvc.1.0.0.2\lib\net45\Chart.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.13.2.0\lib\net40-client\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevTrends.MvcDonutCaching, Version=1.3.0.0, Culture=neutral, PublicKeyToken=73c58d802958a09f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcDonutCaching.1.3.0\lib\net40\DevTrends.MvcDonutCaching.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaxMind.Db, Version=1.0.1.0, Culture=neutral, PublicKeyToken=66afa4cc5ae853ac, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaxMind.Db.1.2.0\lib\net40\MaxMind.Db.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Omu.ValueInjecter, Version=3.1.1.0, Culture=neutral, PublicKeyToken=c7694541b0ac80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\valueinjecter.3.1.1.3\lib\net40\Omu.ValueInjecter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Akismet.NET\Comment.cs" />
+    <Compile Include="Akismet.NET\IValidator.cs" />
+    <Compile Include="Akismet.NET\Validator.cs" />
+    <Compile Include="Application\AkismetHelper.cs" />
+    <Compile Include="Application\AppHelpers.cs" />
+    <Compile Include="Application\CsvFileResult.cs" />
+    <Compile Include="Application\DatesUI.cs" />
+    <Compile Include="Application\Extensions.cs" />
+    <Compile Include="Application\ForumMVCResourceDisplayName.cs" />
+    <Compile Include="Application\ForumViewEngine.cs" />
+    <Compile Include="Application\Localization\Localizer.cs" />
+    <Compile Include="Application\MobileExtensions.cs" />
+    <Compile Include="Application\RssResult.cs" />
+    <Compile Include="Application\WrappedJSonResult.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IocConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChatManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentConfigManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentPostsManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\AdminBadgeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\AdminCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\ForumManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\AdminLanguageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\AdminLuceneController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\AdminTagController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AnnouncementsManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\BannedEmailController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\BannedWordController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\BaseAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\BatchController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ConfigurationManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DatabaseUtilitiesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FileManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FilesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\ForumAccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\ImportExportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LinkCategoryManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LinkManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\LogController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MailingListCampaignManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MailingListImageManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MailingListManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MailingListSubscriberManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MenuManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ModuleManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PageManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\PanelController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\PermissionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PictureAlbumManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PictureManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Forum\SettingsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PluginManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PollManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductCategoryManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RSSManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SlideShowManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatisticsManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserRoleManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\VideoAlbumManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\VideoManagerController.cs" />
+    <Compile Include="Areas\Admin\Models\AdminChartViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\DatabaseUtilitiesViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\FileManager\Configuration\Configuration.cs" />
+    <Compile Include="Areas\Admin\Models\FileManager\Configuration\FileManagerConfigurationSection.cs" />
+    <Compile Include="Areas\Admin\Models\OrderManagerViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\AccountViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\AdminBadgeViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\AdminCategoryViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\AdminLanguageViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\AdminTagViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\AdminViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\BackupToXMLViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\BannedEmailViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\BannedWordViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\BatchViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ChatExportPurgeViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\CommentPostViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\DashboardViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\EnableCommentsViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\GenericMessageViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\LogViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\MailingListImageViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\PermissionsViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\PollViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\RestoreFromXMLViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\SettingsViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\VisitorInfoExportPurgeViewModel.cs" />
+    <Compile Include="Areas\Forum\Controllers\BadgeController.cs" />
+    <Compile Include="Areas\Forum\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Forum\Controllers\ClosedController.cs" />
+    <Compile Include="Areas\Forum\Controllers\EmailController.cs" />
+    <Compile Include="Areas\Forum\Controllers\ForumHomeController.cs" />
+    <Compile Include="Areas\Forum\Controllers\LanguageController.cs" />
+    <Compile Include="Areas\Forum\Controllers\MembersController.cs" />
+    <Compile Include="Areas\Forum\Controllers\PointController.cs" />
+    <Compile Include="Areas\Forum\Controllers\PollController.cs" />
+    <Compile Include="Areas\Forum\Controllers\PostController.cs" />
+    <Compile Include="Areas\Forum\Controllers\PrivateMessageController.cs" />
+    <Compile Include="Areas\Forum\Controllers\SearchController.cs" />
+    <Compile Include="Areas\Forum\Controllers\SnippetsController.cs" />
+    <Compile Include="Areas\Forum\Controllers\StatsController.cs" />
+    <Compile Include="Areas\Forum\Controllers\TagController.cs" />
+    <Compile Include="Areas\Forum\Controllers\TopicController.cs" />
+    <Compile Include="Areas\Forum\Controllers\UploadController.cs" />
+    <Compile Include="Areas\Forum\Controllers\VoteController.cs" />
+    <Compile Include="Areas\Forum\ForumAreaRegistration.cs" />
+    <Compile Include="Areas\Forum\ViewModels\BadgeViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\CategoryViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\EmailViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\HomeViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\InstallViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\LanguageViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\Mapping\ViewModelMapping.cs" />
+    <Compile Include="Areas\Forum\ViewModels\MemberViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\PointViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\PostViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\PrivateMessageViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\SearchViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\StatsViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\TagViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\TopicViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\UploadViewModels.cs" />
+    <Compile Include="Areas\Forum\ViewModels\VoteViewModels.cs" />
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LinksController.cs" />
+    <Compile Include="Controllers\MailingListController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\PicturesController.cs" />
+    <Compile Include="Controllers\PollChartsController.cs" />
+    <Compile Include="Controllers\PollsController.cs" />
+    <Compile Include="Controllers\PrivateMessagesController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\SearchPagesController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Controllers\TwitterController.cs" />
+    <Compile Include="Controllers\V1\AccountController.cs" />
+    <Compile Include="Controllers\V1\MenuController.cs" />
+    <Compile Include="Controllers\V1\PageController.cs" />
+    <Compile Include="Controllers\VideosController.cs" />
+    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\BackupHelper.cs" />
+    <Compile Include="Helpers\HtmlRemoval.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\MSSQL.cs" />
+    <Compile Include="Helpers\Serializer.cs" />
+    <Compile Include="Helpers\Utility.cs" />
+    <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EmailModel.cs" />
+    <Compile Include="Models\ResetPasswordModel.cs" />
+    <Compile Include="Models\SettingKeys.cs" />
+    <Compile Include="Models\V1\IsTokenValidResult.cs" />
+    <Compile Include="Models\V1\LoginResult.cs" />
+    <Compile Include="Models\V1\MenuResult.cs" />
+    <Compile Include="Models\V1\PageResult.cs" />
+    <Compile Include="Models\ViewModels\ChatExportViewModel.cs" />
+    <Compile Include="Models\ViewModels\CheckOutViewModel.cs" />
+    <Compile Include="Models\ViewModels\CommentsMenuViewModel.cs" />
+    <Compile Include="Models\ViewModels\ContactUsViewModel.cs" />
+    <Compile Include="Models\ViewModels\HomeIndexViewModel.cs" />
+    <Compile Include="Models\ViewModels\PicturesViewModel.cs" />
+    <Compile Include="Models\ViewModels\ProfileViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\UserManagerViewModel.cs" />
+    <Compile Include="Models\ViewModels\RSSViewModel.cs" />
+    <Compile Include="Models\ViewModels\SearchEngineViewModel.cs" />
+    <Compile Include="Models\ViewModels\SearchPagesViewModel.cs" />
+    <Compile Include="Models\ViewModels\UnsubscribeViewModel.cs" />
+    <Compile Include="Models\ViewModels\VideosViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\V1\PingController.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\LogFile.txt" />
+    <Content Include="App_Data\XmlDocument.xml" />
+    <Content Include="Areas\Admin\Views\MenuManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\MenuManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\MenuManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\MenuManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\MenuManager\Index.cshtml" />
+    <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\admin\Admin.css" />
+    <Content Include="Content\admin\Images\ajax-loader.gif" />
+    <Content Include="Content\admin\Images\delete.png" />
+    <Content Include="Content\admin\Images\edit.png" />
+    <Content Include="Content\Avatar\Full\Default.png" />
+    <Content Include="Content\Avatar\Thumb\Default.png" />
+    <Content Include="Content\Backup\ReadMe.txt" />
+    <Content Include="Content\badges\MemberForAYearBadge.png" />
+    <Content Include="Content\badges\MentionsUmbracoBadge.png" />
+    <Content Include="Content\badges\PosterMarkAsSolutionBadge.png" />
+    <Content Include="Content\badges\PosterVoteUpBadge.png" />
+    <Content Include="Content\badges\UserMarkAsSolutionBadge.png" />
+    <Content Include="Content\badges\UserVoteUpBadge.png" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\elfinder\css\elfinder.min.css" />
+    <Content Include="Content\elfinder\css\smoothness-1.8.23\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\elfinder\css\smoothness-1.8.23\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\elfinder\css\smoothness-1.8.23\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\elfinder\css\smoothness-1.8.23\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\elfinder\css\smoothness-1.8.23\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\elfinder\css\smoothness-1.8.23\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\elfinder\css\smoothness-1.8.23\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\elfinder\css\smoothness-1.8.23\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\elfinder\css\smoothness-1.8.23\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\elfinder\css\smoothness-1.8.23\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\elfinder\css\smoothness-1.8.23\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\elfinder\css\smoothness-1.8.23\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\elfinder\css\smoothness-1.8.23\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\elfinder\css\smoothness-1.8.23\jquery-ui-1.8.23.custom.css" />
+    <Content Include="Content\elfinder\img\arrows-active.png" />
+    <Content Include="Content\elfinder\img\arrows-normal.png" />
+    <Content Include="Content\elfinder\img\crop.gif" />
+    <Content Include="Content\elfinder\img\dialogs.png" />
+    <Content Include="Content\elfinder\img\icons-big.png" />
+    <Content Include="Content\elfinder\img\icons-small.png" />
+    <Content Include="Content\elfinder\img\logo.png" />
+    <Content Include="Content\elfinder\img\progress.gif" />
+    <Content Include="Content\elfinder\img\quicklook-bg.png" />
+    <Content Include="Content\elfinder\img\quicklook-icons.png" />
+    <Content Include="Content\elfinder\img\resize.png" />
+    <Content Include="Content\elfinder\img\spinner-mini.gif" />
+    <Content Include="Content\elfinder\img\toolbar.png" />
+    <Content Include="Content\elfinder\js\elfinder.min.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.ar.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.bg.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.ca.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.cs.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.de.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.en.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.es.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.fa.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.fr.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.hu.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.it.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.jp.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.ko.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.LANG.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.nl.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.no.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.pl.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.pt_BR.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.ru.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.tr.js" />
+    <Content Include="Content\elfinder\js\i18n\elfinder.zh_CN.js" />
+    <Content Include="Content\elfinder\js\jquery-1.7.1.min.js" />
+    <Content Include="Content\elfinder\js\jquery-ui-1.8.11.min.js" />
+    <Content Include="Content\elfinder\sounds\rm.wav" />
+    <Content Include="Content\Emails\EmailNotification.htm" />
+    <Content Include="Content\Emails\uploads\Full\blank_email_banner.png" />
+    <Content Include="Content\Emails\uploads\index.html" />
+    <Content Include="Content\Emails\uploads\Thumb\blank_email_banner.png" />
+    <Content Include="Content\images\arrow-spinner-blue.gif" />
+    <Content Include="Content\images\Chart_Results_Not_Availabe.jpg" />
+    <Content Include="Content\images\circle1.png" />
+    <Content Include="Content\images\delete.png" />
+    <Content Include="Content\images\down-arrow.png" />
+    <Content Include="Content\images\edit.png" />
+    <Content Include="Content\images\facebook-connect-large.png" />
+    <Content Include="Content\images\icon-poll.png" />
+    <Content Include="Content\images\icon-sticky.png" />
+    <Content Include="Content\images\icons\128x128\Backup.png" />
+    <Content Include="Content\images\icons\128x128\Calendar.png" />
+    <Content Include="Content\images\icons\128x128\Like.png" />
+    <Content Include="Content\images\icons\128x128\link-external-128.png" />
+    <Content Include="Content\images\icons\128x128\pm.png" />
+    <Content Include="Content\images\icons\128x128\product_placeholder.jpg" />
+    <Content Include="Content\images\icons\128x128\Restore.png" />
+    <Content Include="Content\images\icons\128x128\Rss.png" />
+    <Content Include="Content\images\icons\128x128\shopping_cart.png" />
+    <Content Include="Content\images\icons\128x128\subcategory.png" />
+    <Content Include="Content\images\icons\128x128\UserRoleManager.png" />
+    <Content Include="Content\images\icons\16x16\0.png" />
+    <Content Include="Content\images\icons\16x16\1.png" />
+    <Content Include="Content\images\icons\16x16\2.png" />
+    <Content Include="Content\images\icons\16x16\3.png" />
+    <Content Include="Content\images\icons\16x16\4.png" />
+    <Content Include="Content\images\icons\16x16\5.png" />
+    <Content Include="Content\images\icons\16x16\6.png" />
+    <Content Include="Content\images\icons\16x16\7.png" />
+    <Content Include="Content\images\icons\16x16\8.png" />
+    <Content Include="Content\images\icons\16x16\9.png" />
+    <Content Include="Content\images\icons\16x16\Alarme.png" />
+    <Content Include="Content\images\icons\16x16\Ampersand.png" />
+    <Content Include="Content\images\icons\16x16\Application.png" />
+    <Content Include="Content\images\icons\16x16\Applications.png" />
+    <Content Include="Content\images\icons\16x16\Arrow1 Down.png" />
+    <Content Include="Content\images\icons\16x16\Arrow1 DownLeft.png" />
+    <Content Include="Content\images\icons\16x16\Arrow1 DownRight.png" />
+    <Content Include="Content\images\icons\16x16\Arrow1 Left.png" />
+    <Content Include="Content\images\icons\16x16\Arrow1 Right.png" />
+    <Content Include="Content\images\icons\16x16\Arrow1 Up.png" />
+    <Content Include="Content\images\icons\16x16\Arrow1 UpLeft.png" />
+    <Content Include="Content\images\icons\16x16\Arrow1 UpRight.png" />
+    <Content Include="Content\images\icons\16x16\Arrow2 Down.png" />
+    <Content Include="Content\images\icons\16x16\Arrow2 DownLeft.png" />
+    <Content Include="Content\images\icons\16x16\Arrow2 DownRight.png" />
+    <Content Include="Content\images\icons\16x16\Arrow2 Left.png" />
+    <Content Include="Content\images\icons\16x16\Arrow2 Right.png" />
+    <Content Include="Content\images\icons\16x16\Arrow2 Up.png" />
+    <Content Include="Content\images\icons\16x16\Arrow2 UpLeft.png" />
+    <Content Include="Content\images\icons\16x16\Arrow2 UpRight.png" />
+    <Content Include="Content\images\icons\16x16\Arrow3 Down.png" />
+    <Content Include="Content\images\icons\16x16\Arrow3 Left.png" />
+    <Content Include="Content\images\icons\16x16\Arrow3 Right.png" />
+    <Content Include="Content\images\icons\16x16\Arrow3 Up.png" />
+    <Content Include="Content\images\icons\16x16\Attach.png" />
+    <Content Include="Content\images\icons\16x16\Audio Message.png" />
+    <Content Include="Content\images\icons\16x16\Back Top.png" />
+    <Content Include="Content\images\icons\16x16\Back.png" />
+    <Content Include="Content\images\icons\16x16\Bubble 1.png" />
+    <Content Include="Content\images\icons\16x16\Bubble 3.png" />
+    <Content Include="Content\images\icons\16x16\Burn.png" />
+    <Content Include="Content\images\icons\16x16\Calc.png" />
+    <Content Include="Content\images\icons\16x16\Calendar.png" />
+    <Content Include="Content\images\icons\16x16\Cancel.png" />
+    <Content Include="Content\images\icons\16x16\Car.png" />
+    <Content Include="Content\images\icons\16x16\Card1.png" />
+    <Content Include="Content\images\icons\16x16\Card2.png" />
+    <Content Include="Content\images\icons\16x16\Card3.png" />
+    <Content Include="Content\images\icons\16x16\Card4.png" />
+    <Content Include="Content\images\icons\16x16\Cart.png" />
+    <Content Include="Content\images\icons\16x16\Cart2.png" />
+    <Content Include="Content\images\icons\16x16\Cd.png" />
+    <Content Include="Content\images\icons\16x16\Cd2.png" />
+    <Content Include="Content\images\icons\16x16\Clipboard Copy.png" />
+    <Content Include="Content\images\icons\16x16\Clipboard Cut.png" />
+    <Content Include="Content\images\icons\16x16\Clipboard Paste.png" />
+    <Content Include="Content\images\icons\16x16\Clock.png" />
+    <Content Include="Content\images\icons\16x16\Computer.png" />
+    <Content Include="Content\images\icons\16x16\Contact.png" />
+    <Content Include="Content\images\icons\16x16\Copyright.png" />
+    <Content Include="Content\images\icons\16x16\Cube.png" />
+    <Content Include="Content\images\icons\16x16\Currency Dollar.png" />
+    <Content Include="Content\images\icons\16x16\Currency Euro.png" />
+    <Content Include="Content\images\icons\16x16\Currency Pound.png" />
+    <Content Include="Content\images\icons\16x16\Database.png" />
+    <Content Include="Content\images\icons\16x16\Direction Diag1.png" />
+    <Content Include="Content\images\icons\16x16\Direction Diag2.png" />
+    <Content Include="Content\images\icons\16x16\Direction Horz.png" />
+    <Content Include="Content\images\icons\16x16\Direction Vert.png" />
+    <Content Include="Content\images\icons\16x16\Directions.png" />
+    <Content Include="Content\images\icons\16x16\Discuss.png" />
+    <Content Include="Content\images\icons\16x16\Document New.png" />
+    <Content Include="Content\images\icons\16x16\Document.png" />
+    <Content Include="Content\images\icons\16x16\Document2.png" />
+    <Content Include="Content\images\icons\16x16\Dots Down.png" />
+    <Content Include="Content\images\icons\16x16\Dots Up.png" />
+    <Content Include="Content\images\icons\16x16\Dots.png" />
+    <Content Include="Content\images\icons\16x16\Download.png" />
+    <Content Include="Content\images\icons\16x16\Edit.png" />
+    <Content Include="Content\images\icons\16x16\Email.png" />
+    <Content Include="Content\images\icons\16x16\Exclamation.png" />
+    <Content Include="Content\images\icons\16x16\Fbook.png" />
+    <Content Include="Content\images\icons\16x16\Flag.png" />
+    <Content Include="Content\images\icons\16x16\Folder.png" />
+    <Content Include="Content\images\icons\16x16\Folder2.png" />
+    <Content Include="Content\images\icons\16x16\Folder3.png" />
+    <Content Include="Content\images\icons\16x16\Footprint.png" />
+    <Content Include="Content\images\icons\16x16\Forbidden.png" />
+    <Content Include="Content\images\icons\16x16\Full Screen.png" />
+    <Content Include="Content\images\icons\16x16\Full Size.png" />
+    <Content Include="Content\images\icons\16x16\Game.png" />
+    <Content Include="Content\images\icons\16x16\Gear.png" />
+    <Content Include="Content\images\icons\16x16\Globe.png" />
+    <Content Include="Content\images\icons\16x16\Go In.png" />
+    <Content Include="Content\images\icons\16x16\Go Out.png" />
+    <Content Include="Content\images\icons\16x16\Graph.png" />
+    <Content Include="Content\images\icons\16x16\Hand.png" />
+    <Content Include="Content\images\icons\16x16\Hdd Network.png" />
+    <Content Include="Content\images\icons\16x16\Hdd.png" />
+    <Content Include="Content\images\icons\16x16\Health.png" />
+    <Content Include="Content\images\icons\16x16\Heart.png" />
+    <Content Include="Content\images\icons\16x16\Home.png" />
+    <Content Include="Content\images\icons\16x16\Home2.png" />
+    <Content Include="Content\images\icons\16x16\Info.png" />
+    <Content Include="Content\images\icons\16x16\Info2.png" />
+    <Content Include="Content\images\icons\16x16\Ipod.png" />
+    <Content Include="Content\images\icons\16x16\Key.png" />
+    <Content Include="Content\images\icons\16x16\Light.png" />
+    <Content Include="Content\images\icons\16x16\Like.png" />
+    <Content Include="Content\images\icons\16x16\link-external-16.png" />
+    <Content Include="Content\images\icons\16x16\Link.png" />
+    <Content Include="Content\images\icons\16x16\Lock Open.png" />
+    <Content Include="Content\images\icons\16x16\Lock.png" />
+    <Content Include="Content\images\icons\16x16\Loop.png" />
+    <Content Include="Content\images\icons\16x16\Luggage.png" />
+    <Content Include="Content\images\icons\16x16\Mail.png" />
+    <Content Include="Content\images\icons\16x16\Man.png" />
+    <Content Include="Content\images\icons\16x16\Microphone.png" />
+    <Content Include="Content\images\icons\16x16\Minus.png" />
+    <Content Include="Content\images\icons\16x16\Mobile.png" />
+    <Content Include="Content\images\icons\16x16\Mouse.png" />
+    <Content Include="Content\images\icons\16x16\Movie.png" />
+    <Content Include="Content\images\icons\16x16\Music.png" />
+    <Content Include="Content\images\icons\16x16\Music2.png" />
+    <Content Include="Content\images\icons\16x16\Nuke.png" />
+    <Content Include="Content\images\icons\16x16\Ok.png" />
+    <Content Include="Content\images\icons\16x16\order.png" />
+    <Content Include="Content\images\icons\16x16\Paragraph.png" />
+    <Content Include="Content\images\icons\16x16\Percent.png" />
+    <Content Include="Content\images\icons\16x16\Phone.png" />
+    <Content Include="Content\images\icons\16x16\Photo.png" />
+    <Content Include="Content\images\icons\16x16\Picture.png" />
+    <Content Include="Content\images\icons\16x16\Player Eject.png" />
+    <Content Include="Content\images\icons\16x16\Player FastFwd.png" />
+    <Content Include="Content\images\icons\16x16\Player FastRev.png" />
+    <Content Include="Content\images\icons\16x16\Player Next.png" />
+    <Content Include="Content\images\icons\16x16\Player Pause.png" />
+    <Content Include="Content\images\icons\16x16\Player Play.png" />
+    <Content Include="Content\images\icons\16x16\Player Previous.png" />
+    <Content Include="Content\images\icons\16x16\Player Record.png" />
+    <Content Include="Content\images\icons\16x16\Player Stop.png" />
+    <Content Include="Content\images\icons\16x16\Plus.png" />
+    <Content Include="Content\images\icons\16x16\pm.png" />
+    <Content Include="Content\images\icons\16x16\Podcast.png" />
+    <Content Include="Content\images\icons\16x16\Pointer.png" />
+    <Content Include="Content\images\icons\16x16\Poll.png" />
+    <Content Include="Content\images\icons\16x16\Printer.png" />
+    <Content Include="Content\images\icons\16x16\product.png" />
+    <Content Include="Content\images\icons\16x16\product_category.png" />
+    <Content Include="Content\images\icons\16x16\Puzzle.png" />
+    <Content Include="Content\images\icons\16x16\Question.png" />
+    <Content Include="Content\images\icons\16x16\Reduced Size.png" />
+    <Content Include="Content\images\icons\16x16\Refresh.png" />
+    <Content Include="Content\images\icons\16x16\Rss 1.png" />
+    <Content Include="Content\images\icons\16x16\Rss 2.png" />
+    <Content Include="Content\images\icons\16x16\Rss.png" />
+    <Content Include="Content\images\icons\16x16\Save.png" />
+    <Content Include="Content\images\icons\16x16\Screen.png" />
+    <Content Include="Content\images\icons\16x16\Search.png" />
+    <Content Include="Content\images\icons\16x16\Security.png" />
+    <Content Include="Content\images\icons\16x16\shopping_cart.png" />
+    <Content Include="Content\images\icons\16x16\Sitemap.png" />
+    <Content Include="Content\images\icons\16x16\Size Diag1.png" />
+    <Content Include="Content\images\icons\16x16\Size Diag2.png" />
+    <Content Include="Content\images\icons\16x16\Size Horz.png" />
+    <Content Include="Content\images\icons\16x16\Size Vert.png" />
+    <Content Include="Content\images\icons\16x16\Sleep.png" />
+    <Content Include="Content\images\icons\16x16\Smiley1.png" />
+    <Content Include="Content\images\icons\16x16\Smiley2.png" />
+    <Content Include="Content\images\icons\16x16\Smiley3.png" />
+    <Content Include="Content\images\icons\16x16\Sound Minus.png" />
+    <Content Include="Content\images\icons\16x16\Sound Off.png" />
+    <Content Include="Content\images\icons\16x16\Sound On.png" />
+    <Content Include="Content\images\icons\16x16\Sound Plus.png" />
+    <Content Include="Content\images\icons\16x16\Standby.png" />
+    <Content Include="Content\images\icons\16x16\Star.png" />
+    <Content Include="Content\images\icons\16x16\Start.png" />
+    <Content Include="Content\images\icons\16x16\Stats 3.png" />
+    <Content Include="Content\images\icons\16x16\Stats.png" />
+    <Content Include="Content\images\icons\16x16\Stats2.png" />
+    <Content Include="Content\images\icons\16x16\Table.png" />
+    <Content Include="Content\images\icons\16x16\Tag.png" />
+    <Content Include="Content\images\icons\16x16\Target.png" />
+    <Content Include="Content\images\icons\16x16\Text Large.png" />
+    <Content Include="Content\images\icons\16x16\Text Meduim.png" />
+    <Content Include="Content\images\icons\16x16\Text Minus.png" />
+    <Content Include="Content\images\icons\16x16\Text Plus.png" />
+    <Content Include="Content\images\icons\16x16\Text Small.png" />
+    <Content Include="Content\images\icons\16x16\Thumb Down.png" />
+    <Content Include="Content\images\icons\16x16\Thumb Up.png" />
+    <Content Include="Content\images\icons\16x16\Tool.png" />
+    <Content Include="Content\images\icons\16x16\Trackback.png" />
+    <Content Include="Content\images\icons\16x16\Trash.png" />
+    <Content Include="Content\images\icons\16x16\Travel.png" />
+    <Content Include="Content\images\icons\16x16\Tree.png" />
+    <Content Include="Content\images\icons\16x16\TV.png" />
+    <Content Include="Content\images\icons\16x16\User.png" />
+    <Content Include="Content\images\icons\16x16\UserRoleManager.png" />
+    <Content Include="Content\images\icons\16x16\Video.png" />
+    <Content Include="Content\images\icons\16x16\Wait.png" />
+    <Content Include="Content\images\icons\16x16\Warning.png" />
+    <Content Include="Content\images\icons\16x16\Weather Cloud.png" />
+    <Content Include="Content\images\icons\16x16\Weather Could Sun.png" />
+    <Content Include="Content\images\icons\16x16\Weather Rain.png" />
+    <Content Include="Content\images\icons\16x16\Weather Snow.png" />
+    <Content Include="Content\images\icons\16x16\Weather Sun.png" />
+    <Content Include="Content\images\icons\16x16\Wizard.png" />
+    <Content Include="Content\images\icons\16x16\Woman.png" />
+    <Content Include="Content\images\icons\16x16\Wordpress.png" />
+    <Content Include="Content\images\icons\16x16\Write.png" />
+    <Content Include="Content\images\icons\16x16\Zoom In.png" />
+    <Content Include="Content\images\icons\16x16\Zoom Out.png" />
+    <Content Include="Content\images\icons\20x20\Like.png" />
+    <Content Include="Content\images\icons\20x20\pm.png" />
+    <Content Include="Content\images\icons\20x20\Rss.png" />
+    <Content Include="Content\images\icons\24x24\0.png" />
+    <Content Include="Content\images\icons\24x24\1.png" />
+    <Content Include="Content\images\icons\24x24\2.png" />
+    <Content Include="Content\images\icons\24x24\3.png" />
+    <Content Include="Content\images\icons\24x24\4.png" />
+    <Content Include="Content\images\icons\24x24\5.png" />
+    <Content Include="Content\images\icons\24x24\6.png" />
+    <Content Include="Content\images\icons\24x24\7.png" />
+    <Content Include="Content\images\icons\24x24\8.png" />
+    <Content Include="Content\images\icons\24x24\9.png" />
+    <Content Include="Content\images\icons\24x24\Alarme.png" />
+    <Content Include="Content\images\icons\24x24\Ampersand.png" />
+    <Content Include="Content\images\icons\24x24\Application.png" />
+    <Content Include="Content\images\icons\24x24\Applications.png" />
+    <Content Include="Content\images\icons\24x24\Arrow1 Down.png" />
+    <Content Include="Content\images\icons\24x24\Arrow1 DownLeft.png" />
+    <Content Include="Content\images\icons\24x24\Arrow1 DownRight.png" />
+    <Content Include="Content\images\icons\24x24\Arrow1 Left.png" />
+    <Content Include="Content\images\icons\24x24\Arrow1 Right.png" />
+    <Content Include="Content\images\icons\24x24\Arrow1 Up.png" />
+    <Content Include="Content\images\icons\24x24\Arrow1 UpLeft.png" />
+    <Content Include="Content\images\icons\24x24\Arrow1 UpRight.png" />
+    <Content Include="Content\images\icons\24x24\Arrow2 Down.png" />
+    <Content Include="Content\images\icons\24x24\Arrow2 DownLeft.png" />
+    <Content Include="Content\images\icons\24x24\Arrow2 DownRight.png" />
+    <Content Include="Content\images\icons\24x24\Arrow2 Left.png" />
+    <Content Include="Content\images\icons\24x24\Arrow2 Right.png" />
+    <Content Include="Content\images\icons\24x24\Arrow2 Up.png" />
+    <Content Include="Content\images\icons\24x24\Arrow2 UpLeft.png" />
+    <Content Include="Content\images\icons\24x24\Arrow2 UpRight.png" />
+    <Content Include="Content\images\icons\24x24\Arrow3 Down.png" />
+    <Content Include="Content\images\icons\24x24\Arrow3 Left.png" />
+    <Content Include="Content\images\icons\24x24\Arrow3 Right.png" />
+    <Content Include="Content\images\icons\24x24\Arrow3 Up.png" />
+    <Content Include="Content\images\icons\24x24\Attach.png" />
+    <Content Include="Content\images\icons\24x24\Audio Message.png" />
+    <Content Include="Content\images\icons\24x24\Back Top.png" />
+    <Content Include="Content\images\icons\24x24\Back.png" />
+    <Content Include="Content\images\icons\24x24\Backup.png" />
+    <Content Include="Content\images\icons\24x24\Bubble 1.png" />
+    <Content Include="Content\images\icons\24x24\Bubble 3.png" />
+    <Content Include="Content\images\icons\24x24\Burn.png" />
+    <Content Include="Content\images\icons\24x24\Calc.png" />
+    <Content Include="Content\images\icons\24x24\Calendar.png" />
+    <Content Include="Content\images\icons\24x24\Cancel.png" />
+    <Content Include="Content\images\icons\24x24\Car.png" />
+    <Content Include="Content\images\icons\24x24\Card1.png" />
+    <Content Include="Content\images\icons\24x24\Card2.png" />
+    <Content Include="Content\images\icons\24x24\Card3.png" />
+    <Content Include="Content\images\icons\24x24\Card4.png" />
+    <Content Include="Content\images\icons\24x24\Cart.png" />
+    <Content Include="Content\images\icons\24x24\Cart2.png" />
+    <Content Include="Content\images\icons\24x24\Cd.png" />
+    <Content Include="Content\images\icons\24x24\Cd2.png" />
+    <Content Include="Content\images\icons\24x24\Clipboard Copy.png" />
+    <Content Include="Content\images\icons\24x24\Clipboard Cut.png" />
+    <Content Include="Content\images\icons\24x24\Clipboard Paste.png" />
+    <Content Include="Content\images\icons\24x24\Clock.png" />
+    <Content Include="Content\images\icons\24x24\Computer.png" />
+    <Content Include="Content\images\icons\24x24\Contact.png" />
+    <Content Include="Content\images\icons\24x24\Copyright.png" />
+    <Content Include="Content\images\icons\24x24\Cube.png" />
+    <Content Include="Content\images\icons\24x24\Currency Dollar.png" />
+    <Content Include="Content\images\icons\24x24\Currency Euro.png" />
+    <Content Include="Content\images\icons\24x24\Currency Pound.png" />
+    <Content Include="Content\images\icons\24x24\Database.png" />
+    <Content Include="Content\images\icons\24x24\Direction Diag1.png" />
+    <Content Include="Content\images\icons\24x24\Direction Diag2.png" />
+    <Content Include="Content\images\icons\24x24\Direction Horz.png" />
+    <Content Include="Content\images\icons\24x24\Direction Vert.png" />
+    <Content Include="Content\images\icons\24x24\Directions.png" />
+    <Content Include="Content\images\icons\24x24\Discuss.png" />
+    <Content Include="Content\images\icons\24x24\Document New.png" />
+    <Content Include="Content\images\icons\24x24\Document.png" />
+    <Content Include="Content\images\icons\24x24\Document2.png" />
+    <Content Include="Content\images\icons\24x24\Dots Down.png" />
+    <Content Include="Content\images\icons\24x24\Dots Up.png" />
+    <Content Include="Content\images\icons\24x24\Dots.png" />
+    <Content Include="Content\images\icons\24x24\Download.png" />
+    <Content Include="Content\images\icons\24x24\Edit.png" />
+    <Content Include="Content\images\icons\24x24\Email.png" />
+    <Content Include="Content\images\icons\24x24\Exclamation.png" />
+    <Content Include="Content\images\icons\24x24\Fbook.png" />
+    <Content Include="Content\images\icons\24x24\Flag.png" />
+    <Content Include="Content\images\icons\24x24\Folder.png" />
+    <Content Include="Content\images\icons\24x24\Folder2.png" />
+    <Content Include="Content\images\icons\24x24\Folder3.png" />
+    <Content Include="Content\images\icons\24x24\Footprint.png" />
+    <Content Include="Content\images\icons\24x24\Forbidden.png" />
+    <Content Include="Content\images\icons\24x24\Full Screen.png" />
+    <Content Include="Content\images\icons\24x24\Full Size.png" />
+    <Content Include="Content\images\icons\24x24\Game.png" />
+    <Content Include="Content\images\icons\24x24\Gear.png" />
+    <Content Include="Content\images\icons\24x24\Globe.png" />
+    <Content Include="Content\images\icons\24x24\Go In.png" />
+    <Content Include="Content\images\icons\24x24\Go Out.png" />
+    <Content Include="Content\images\icons\24x24\Graph.png" />
+    <Content Include="Content\images\icons\24x24\Hand.png" />
+    <Content Include="Content\images\icons\24x24\Hdd Network.png" />
+    <Content Include="Content\images\icons\24x24\Hdd.png" />
+    <Content Include="Content\images\icons\24x24\Health.png" />
+    <Content Include="Content\images\icons\24x24\Heart.png" />
+    <Content Include="Content\images\icons\24x24\Home.png" />
+    <Content Include="Content\images\icons\24x24\Home2.png" />
+    <Content Include="Content\images\icons\24x24\Info.png" />
+    <Content Include="Content\images\icons\24x24\Info2.png" />
+    <Content Include="Content\images\icons\24x24\Ipod.png" />
+    <Content Include="Content\images\icons\24x24\Key.png" />
+    <Content Include="Content\images\icons\24x24\Light.png" />
+    <Content Include="Content\images\icons\24x24\Like.png" />
+    <Content Include="Content\images\icons\24x24\link-external-24.png" />
+    <Content Include="Content\images\icons\24x24\Link.png" />
+    <Content Include="Content\images\icons\24x24\Lock Open.png" />
+    <Content Include="Content\images\icons\24x24\Lock.png" />
+    <Content Include="Content\images\icons\24x24\Loop.png" />
+    <Content Include="Content\images\icons\24x24\Luggage.png" />
+    <Content Include="Content\images\icons\24x24\Mail.png" />
+    <Content Include="Content\images\icons\24x24\Man.png" />
+    <Content Include="Content\images\icons\24x24\Microphone.png" />
+    <Content Include="Content\images\icons\24x24\Minus.png" />
+    <Content Include="Content\images\icons\24x24\Mobile.png" />
+    <Content Include="Content\images\icons\24x24\Mouse.png" />
+    <Content Include="Content\images\icons\24x24\Movie.png" />
+    <Content Include="Content\images\icons\24x24\Music.png" />
+    <Content Include="Content\images\icons\24x24\Music2.png" />
+    <Content Include="Content\images\icons\24x24\Nuke.png" />
+    <Content Include="Content\images\icons\24x24\Ok.png" />
+    <Content Include="Content\images\icons\24x24\order.png" />
+    <Content Include="Content\images\icons\24x24\Paragraph.png" />
+    <Content Include="Content\images\icons\24x24\Percent.png" />
+    <Content Include="Content\images\icons\24x24\Phone.png" />
+    <Content Include="Content\images\icons\24x24\Photo.png" />
+    <Content Include="Content\images\icons\24x24\Picture.png" />
+    <Content Include="Content\images\icons\24x24\Player Eject.png" />
+    <Content Include="Content\images\icons\24x24\Player FastFwd.png" />
+    <Content Include="Content\images\icons\24x24\Player FastRev.png" />
+    <Content Include="Content\images\icons\24x24\Player Next.png" />
+    <Content Include="Content\images\icons\24x24\Player Pause.png" />
+    <Content Include="Content\images\icons\24x24\Player Play.png" />
+    <Content Include="Content\images\icons\24x24\Player Previous.png" />
+    <Content Include="Content\images\icons\24x24\Player Record.png" />
+    <Content Include="Content\images\icons\24x24\Player Stop.png" />
+    <Content Include="Content\images\icons\24x24\Plus.png" />
+    <Content Include="Content\images\icons\24x24\pm.png" />
+    <Content Include="Content\images\icons\24x24\Podcast.png" />
+    <Content Include="Content\images\icons\24x24\Pointer.png" />
+    <Content Include="Content\images\icons\24x24\Poll.png" />
+    <Content Include="Content\images\icons\24x24\Printer.png" />
+    <Content Include="Content\images\icons\24x24\product.png" />
+    <Content Include="Content\images\icons\24x24\product_category.png" />
+    <Content Include="Content\images\icons\24x24\Puzzle.png" />
+    <Content Include="Content\images\icons\24x24\Question.png" />
+    <Content Include="Content\images\icons\24x24\Reduced Size.png" />
+    <Content Include="Content\images\icons\24x24\Refresh.png" />
+    <Content Include="Content\images\icons\24x24\Restore.png" />
+    <Content Include="Content\images\icons\24x24\Rss 1.png" />
+    <Content Include="Content\images\icons\24x24\Rss 2.png" />
+    <Content Include="Content\images\icons\24x24\Save.png" />
+    <Content Include="Content\images\icons\24x24\Screen.png" />
+    <Content Include="Content\images\icons\24x24\Search.png" />
+    <Content Include="Content\images\icons\24x24\Security.png" />
+    <Content Include="Content\images\icons\24x24\shopping_cart.png" />
+    <Content Include="Content\images\icons\24x24\Sitemap.png" />
+    <Content Include="Content\images\icons\24x24\Size Diag1.png" />
+    <Content Include="Content\images\icons\24x24\Size Diag2.png" />
+    <Content Include="Content\images\icons\24x24\Size Horz.png" />
+    <Content Include="Content\images\icons\24x24\Size Vert.png" />
+    <Content Include="Content\images\icons\24x24\Sleep.png" />
+    <Content Include="Content\images\icons\24x24\Smiley1.png" />
+    <Content Include="Content\images\icons\24x24\Smiley2.png" />
+    <Content Include="Content\images\icons\24x24\Smiley3.png" />
+    <Content Include="Content\images\icons\24x24\Sound Minus.png" />
+    <Content Include="Content\images\icons\24x24\Sound Off.png" />
+    <Content Include="Content\images\icons\24x24\Sound On.png" />
+    <Content Include="Content\images\icons\24x24\Sound Plus.png" />
+    <Content Include="Content\images\icons\24x24\Standby.png" />
+    <Content Include="Content\images\icons\24x24\Star.png" />
+    <Content Include="Content\images\icons\24x24\Start.png" />
+    <Content Include="Content\images\icons\24x24\Stats 3.png" />
+    <Content Include="Content\images\icons\24x24\Stats.png" />
+    <Content Include="Content\images\icons\24x24\Stats2.png" />
+    <Content Include="Content\images\icons\24x24\Table.png" />
+    <Content Include="Content\images\icons\24x24\Tag.png" />
+    <Content Include="Content\images\icons\24x24\Target.png" />
+    <Content Include="Content\images\icons\24x24\Text Large.png" />
+    <Content Include="Content\images\icons\24x24\Text Meduim.png" />
+    <Content Include="Content\images\icons\24x24\Text Minus.png" />
+    <Content Include="Content\images\icons\24x24\Text Plus.png" />
+    <Content Include="Content\images\icons\24x24\Text Small.png" />
+    <Content Include="Content\images\icons\24x24\Thumb Down.png" />
+    <Content Include="Content\images\icons\24x24\Thumb Up.png" />
+    <Content Include="Content\images\icons\24x24\Tool.png" />
+    <Content Include="Content\images\icons\24x24\Trackback.png" />
+    <Content Include="Content\images\icons\24x24\Trash.png" />
+    <Content Include="Content\images\icons\24x24\Travel.png" />
+    <Content Include="Content\images\icons\24x24\Tree.png" />
+    <Content Include="Content\images\icons\24x24\TV.png" />
+    <Content Include="Content\images\icons\24x24\User.png" />
+    <Content Include="Content\images\icons\24x24\UserRoleManager.png" />
+    <Content Include="Content\images\icons\24x24\Video.png" />
+    <Content Include="Content\images\icons\24x24\Wait.png" />
+    <Content Include="Content\images\icons\24x24\Warning.png" />
+    <Content Include="Content\images\icons\24x24\Weather Cloud.png" />
+    <Content Include="Content\images\icons\24x24\Weather Could Sun.png" />
+    <Content Include="Content\images\icons\24x24\Weather Rain.png" />
+    <Content Include="Content\images\icons\24x24\Weather Snow.png" />
+    <Content Include="Content\images\icons\24x24\Weather Sun.png" />
+    <Content Include="Content\images\icons\24x24\Wizard.png" />
+    <Content Include="Content\images\icons\24x24\Woman.png" />
+    <Content Include="Content\images\icons\24x24\Wordpress.png" />
+    <Content Include="Content\images\icons\24x24\Write.png" />
+    <Content Include="Content\images\icons\24x24\Zoom In.png" />
+    <Content Include="Content\images\icons\24x24\Zoom Out.png" />
+    <Content Include="Content\images\icons\256x256\Backup.png" />
+    <Content Include="Content\images\icons\256x256\Like.png" />
+    <Content Include="Content\images\icons\256x256\pm.png" />
+    <Content Include="Content\images\icons\256x256\Restore.png" />
+    <Content Include="Content\images\icons\256x256\Rss.png" />
+    <Content Include="Content\images\icons\32x32\0.png" />
+    <Content Include="Content\images\icons\32x32\1.png" />
+    <Content Include="Content\images\icons\32x32\2.png" />
+    <Content Include="Content\images\icons\32x32\3.png" />
+    <Content Include="Content\images\icons\32x32\4.png" />
+    <Content Include="Content\images\icons\32x32\5.png" />
+    <Content Include="Content\images\icons\32x32\6.png" />
+    <Content Include="Content\images\icons\32x32\7.png" />
+    <Content Include="Content\images\icons\32x32\8.png" />
+    <Content Include="Content\images\icons\32x32\9.png" />
+    <Content Include="Content\images\icons\32x32\Alarme.png" />
+    <Content Include="Content\images\icons\32x32\Ampersand.png" />
+    <Content Include="Content\images\icons\32x32\Application.png" />
+    <Content Include="Content\images\icons\32x32\Applications.png" />
+    <Content Include="Content\images\icons\32x32\Arrow1 Down.png" />
+    <Content Include="Content\images\icons\32x32\Arrow1 DownLeft.png" />
+    <Content Include="Content\images\icons\32x32\Arrow1 DownRight.png" />
+    <Content Include="Content\images\icons\32x32\Arrow1 Left.png" />
+    <Content Include="Content\images\icons\32x32\Arrow1 Right.png" />
+    <Content Include="Content\images\icons\32x32\Arrow1 Up.png" />
+    <Content Include="Content\images\icons\32x32\Arrow1 UpLeft.png" />
+    <Content Include="Content\images\icons\32x32\Arrow1 UpRight.png" />
+    <Content Include="Content\images\icons\32x32\Arrow2 Down.png" />
+    <Content Include="Content\images\icons\32x32\Arrow2 DownLeft.png" />
+    <Content Include="Content\images\icons\32x32\Arrow2 DownRight.png" />
+    <Content Include="Content\images\icons\32x32\Arrow2 Left.png" />
+    <Content Include="Content\images\icons\32x32\Arrow2 Right.png" />
+    <Content Include="Content\images\icons\32x32\Arrow2 Up.png" />
+    <Content Include="Content\images\icons\32x32\Arrow2 UpLeft.png" />
+    <Content Include="Content\images\icons\32x32\Arrow2 UpRight.png" />
+    <Content Include="Content\images\icons\32x32\Arrow3 Down.png" />
+    <Content Include="Content\images\icons\32x32\Arrow3 Left.png" />
+    <Content Include="Content\images\icons\32x32\Arrow3 Right.png" />
+    <Content Include="Content\images\icons\32x32\Arrow3 Up.png" />
+    <Content Include="Content\images\icons\32x32\Attach.png" />
+    <Content Include="Content\images\icons\32x32\Audio Message.png" />
+    <Content Include="Content\images\icons\32x32\Back Top.png" />
+    <Content Include="Content\images\icons\32x32\Back.png" />
+    <Content Include="Content\images\icons\32x32\Backup.png" />
+    <Content Include="Content\images\icons\32x32\Bubble 1.png" />
+    <Content Include="Content\images\icons\32x32\Bubble 3.png" />
+    <Content Include="Content\images\icons\32x32\Burn.png" />
+    <Content Include="Content\images\icons\32x32\Calc.png" />
+    <Content Include="Content\images\icons\32x32\Calendar.png" />
+    <Content Include="Content\images\icons\32x32\Cancel.png" />
+    <Content Include="Content\images\icons\32x32\Car.png" />
+    <Content Include="Content\images\icons\32x32\Card1.png" />
+    <Content Include="Content\images\icons\32x32\Card2.png" />
+    <Content Include="Content\images\icons\32x32\Card3.png" />
+    <Content Include="Content\images\icons\32x32\Card4.png" />
+    <Content Include="Content\images\icons\32x32\Cart.png" />
+    <Content Include="Content\images\icons\32x32\Cart2.png" />
+    <Content Include="Content\images\icons\32x32\Cd.png" />
+    <Content Include="Content\images\icons\32x32\Cd2.png" />
+    <Content Include="Content\images\icons\32x32\Clipboard Copy.png" />
+    <Content Include="Content\images\icons\32x32\Clipboard Cut.png" />
+    <Content Include="Content\images\icons\32x32\Clipboard Paste.png" />
+    <Content Include="Content\images\icons\32x32\Clock.png" />
+    <Content Include="Content\images\icons\32x32\Computer.png" />
+    <Content Include="Content\images\icons\32x32\Contact.png" />
+    <Content Include="Content\images\icons\32x32\Copyright.png" />
+    <Content Include="Content\images\icons\32x32\Cube.png" />
+    <Content Include="Content\images\icons\32x32\Currency Dollar.png" />
+    <Content Include="Content\images\icons\32x32\Currency Euro.png" />
+    <Content Include="Content\images\icons\32x32\Currency Pound.png" />
+    <Content Include="Content\images\icons\32x32\Database.png" />
+    <Content Include="Content\images\icons\32x32\Direction Diag1.png" />
+    <Content Include="Content\images\icons\32x32\Direction Diag2.png" />
+    <Content Include="Content\images\icons\32x32\Direction Horz.png" />
+    <Content Include="Content\images\icons\32x32\Direction Vert.png" />
+    <Content Include="Content\images\icons\32x32\Directions.png" />
+    <Content Include="Content\images\icons\32x32\Discuss.png" />
+    <Content Include="Content\images\icons\32x32\Document New.png" />
+    <Content Include="Content\images\icons\32x32\Document.png" />
+    <Content Include="Content\images\icons\32x32\Document2.png" />
+    <Content Include="Content\images\icons\32x32\Dots Down.png" />
+    <Content Include="Content\images\icons\32x32\Dots Up.png" />
+    <Content Include="Content\images\icons\32x32\Dots.png" />
+    <Content Include="Content\images\icons\32x32\Download.png" />
+    <Content Include="Content\images\icons\32x32\Edit.png" />
+    <Content Include="Content\images\icons\32x32\Email.png" />
+    <Content Include="Content\images\icons\32x32\Exclamation.png" />
+    <Content Include="Content\images\icons\32x32\Fbook.png" />
+    <Content Include="Content\images\icons\32x32\Flag.png" />
+    <Content Include="Content\images\icons\32x32\Folder.png" />
+    <Content Include="Content\images\icons\32x32\Folder2.png" />
+    <Content Include="Content\images\icons\32x32\Folder3.png" />
+    <Content Include="Content\images\icons\32x32\Footprint.png" />
+    <Content Include="Content\images\icons\32x32\Forbidden.png" />
+    <Content Include="Content\images\icons\32x32\Full Screen.png" />
+    <Content Include="Content\images\icons\32x32\Full Size.png" />
+    <Content Include="Content\images\icons\32x32\Game.png" />
+    <Content Include="Content\images\icons\32x32\Gear.png" />
+    <Content Include="Content\images\icons\32x32\Globe.png" />
+    <Content Include="Content\images\icons\32x32\Go In.png" />
+    <Content Include="Content\images\icons\32x32\Go Out.png" />
+    <Content Include="Content\images\icons\32x32\Graph.png" />
+    <Content Include="Content\images\icons\32x32\Hand.png" />
+    <Content Include="Content\images\icons\32x32\Hdd Network.png" />
+    <Content Include="Content\images\icons\32x32\Hdd.png" />
+    <Content Include="Content\images\icons\32x32\Health.png" />
+    <Content Include="Content\images\icons\32x32\Heart.png" />
+    <Content Include="Content\images\icons\32x32\Home.png" />
+    <Content Include="Content\images\icons\32x32\Home2.png" />
+    <Content Include="Content\images\icons\32x32\Info.png" />
+    <Content Include="Content\images\icons\32x32\Info2.png" />
+    <Content Include="Content\images\icons\32x32\Ipod.png" />
+    <Content Include="Content\images\icons\32x32\Key.png" />
+    <Content Include="Content\images\icons\32x32\Light.png" />
+    <Content Include="Content\images\icons\32x32\Like.png" />
+    <Content Include="Content\images\icons\32x32\link-external-32.png" />
+    <Content Include="Content\images\icons\32x32\Link.png" />
+    <Content Include="Content\images\icons\32x32\Lock Open.png" />
+    <Content Include="Content\images\icons\32x32\Lock.png" />
+    <Content Include="Content\images\icons\32x32\Loop.png" />
+    <Content Include="Content\images\icons\32x32\Luggage.png" />
+    <Content Include="Content\images\icons\32x32\Mail.png" />
+    <Content Include="Content\images\icons\32x32\Man.png" />
+    <Content Include="Content\images\icons\32x32\Microphone.png" />
+    <Content Include="Content\images\icons\32x32\Minus.png" />
+    <Content Include="Content\images\icons\32x32\Mobile.png" />
+    <Content Include="Content\images\icons\32x32\Mouse.png" />
+    <Content Include="Content\images\icons\32x32\Movie.png" />
+    <Content Include="Content\images\icons\32x32\Music.png" />
+    <Content Include="Content\images\icons\32x32\Music2.png" />
+    <Content Include="Content\images\icons\32x32\Nuke.png" />
+    <Content Include="Content\images\icons\32x32\Ok.png" />
+    <Content Include="Content\images\icons\32x32\order.png" />
+    <Content Include="Content\images\icons\32x32\Paragraph.png" />
+    <Content Include="Content\images\icons\32x32\Percent.png" />
+    <Content Include="Content\images\icons\32x32\Phone.png" />
+    <Content Include="Content\images\icons\32x32\Photo.png" />
+    <Content Include="Content\images\icons\32x32\Picture.png" />
+    <Content Include="Content\images\icons\32x32\Player Eject.png" />
+    <Content Include="Content\images\icons\32x32\Player FastFwd.png" />
+    <Content Include="Content\images\icons\32x32\Player FastRev.png" />
+    <Content Include="Content\images\icons\32x32\Player Next.png" />
+    <Content Include="Content\images\icons\32x32\Player Pause.png" />
+    <Content Include="Content\images\icons\32x32\Player Play.png" />
+    <Content Include="Content\images\icons\32x32\Player Previous.png" />
+    <Content Include="Content\images\icons\32x32\Player Record.png" />
+    <Content Include="Content\images\icons\32x32\Player Stop.png" />
+    <Content Include="Content\images\icons\32x32\Plus.png" />
+    <Content Include="Content\images\icons\32x32\pm.png" />
+    <Content Include="Content\images\icons\32x32\Podcast.png" />
+    <Content Include="Content\images\icons\32x32\Pointer.png" />
+    <Content Include="Content\images\icons\32x32\Poll.png" />
+    <Content Include="Content\images\icons\32x32\Printer.png" />
+    <Content Include="Content\images\icons\32x32\product.png" />
+    <Content Include="Content\images\icons\32x32\product_category.png" />
+    <Content Include="Content\images\icons\32x32\Puzzle.png" />
+    <Content Include="Content\images\icons\32x32\Question.png" />
+    <Content Include="Content\images\icons\32x32\Reduced Size.png" />
+    <Content Include="Content\images\icons\32x32\Refresh.png" />
+    <Content Include="Content\images\icons\32x32\Restore.png" />
+    <Content Include="Content\images\icons\32x32\Rss 1.png" />
+    <Content Include="Content\images\icons\32x32\Rss 2.png" />
+    <Content Include="Content\images\icons\32x32\Rss.png" />
+    <Content Include="Content\images\icons\32x32\Save.png" />
+    <Content Include="Content\images\icons\32x32\Screen.png" />
+    <Content Include="Content\images\icons\32x32\Search.png" />
+    <Content Include="Content\images\icons\32x32\Security.png" />
+    <Content Include="Content\images\icons\32x32\shopping_cart.png" />
+    <Content Include="Content\images\icons\32x32\Sitemap.png" />
+    <Content Include="Content\images\icons\32x32\Size Diag1.png" />
+    <Content Include="Content\images\icons\32x32\Size Diag2.png" />
+    <Content Include="Content\images\icons\32x32\Size Horz.png" />
+    <Content Include="Content\images\icons\32x32\Size Vert.png" />
+    <Content Include="Content\images\icons\32x32\Sleep.png" />
+    <Content Include="Content\images\icons\32x32\Smiley1.png" />
+    <Content Include="Content\images\icons\32x32\Smiley2.png" />
+    <Content Include="Content\images\icons\32x32\Smiley3.png" />
+    <Content Include="Content\images\icons\32x32\Sound Minus.png" />
+    <Content Include="Content\images\icons\32x32\Sound Off.png" />
+    <Content Include="Content\images\icons\32x32\Sound On.png" />
+    <Content Include="Content\images\icons\32x32\Sound Plus.png" />
+    <Content Include="Content\images\icons\32x32\Standby.png" />
+    <Content Include="Content\images\icons\32x32\Star.png" />
+    <Content Include="Content\images\icons\32x32\Start.png" />
+    <Content Include="Content\images\icons\32x32\Stats 3.png" />
+    <Content Include="Content\images\icons\32x32\Stats.png" />
+    <Content Include="Content\images\icons\32x32\Stats2.png" />
+    <Content Include="Content\images\icons\32x32\Table.png" />
+    <Content Include="Content\images\icons\32x32\Tag.png" />
+    <Content Include="Content\images\icons\32x32\Target.png" />
+    <Content Include="Content\images\icons\32x32\Text Large.png" />
+    <Content Include="Content\images\icons\32x32\Text Meduim.png" />
+    <Content Include="Content\images\icons\32x32\Text Minus.png" />
+    <Content Include="Content\images\icons\32x32\Text Plus.png" />
+    <Content Include="Content\images\icons\32x32\Text Small.png" />
+    <Content Include="Content\images\icons\32x32\Thumb Down.png" />
+    <Content Include="Content\images\icons\32x32\Thumb Up.png" />
+    <Content Include="Content\images\icons\32x32\Tool.png" />
+    <Content Include="Content\images\icons\32x32\Trackback.png" />
+    <Content Include="Content\images\icons\32x32\Trash.png" />
+    <Content Include="Content\images\icons\32x32\Travel.png" />
+    <Content Include="Content\images\icons\32x32\Tree.png" />
+    <Content Include="Content\images\icons\32x32\TV.png" />
+    <Content Include="Content\images\icons\32x32\User.png" />
+    <Content Include="Content\images\icons\32x32\UserRoleManager.png" />
+    <Content Include="Content\images\icons\32x32\Video.png" />
+    <Content Include="Content\images\icons\32x32\Wait.png" />
+    <Content Include="Content\images\icons\32x32\Warning.png" />
+    <Content Include="Content\images\icons\32x32\Weather Cloud.png" />
+    <Content Include="Content\images\icons\32x32\Weather Could Sun.png" />
+    <Content Include="Content\images\icons\32x32\Weather Rain.png" />
+    <Content Include="Content\images\icons\32x32\Weather Snow.png" />
+    <Content Include="Content\images\icons\32x32\Weather Sun.png" />
+    <Content Include="Content\images\icons\32x32\Wizard.png" />
+    <Content Include="Content\images\icons\32x32\Woman.png" />
+    <Content Include="Content\images\icons\32x32\Wordpress.png" />
+    <Content Include="Content\images\icons\32x32\Write.png" />
+    <Content Include="Content\images\icons\32x32\Zoom In.png" />
+    <Content Include="Content\images\icons\32x32\Zoom Out.png" />
+    <Content Include="Content\images\icons\48x48\0.png" />
+    <Content Include="Content\images\icons\48x48\1.png" />
+    <Content Include="Content\images\icons\48x48\2.png" />
+    <Content Include="Content\images\icons\48x48\3.png" />
+    <Content Include="Content\images\icons\48x48\4.png" />
+    <Content Include="Content\images\icons\48x48\5.png" />
+    <Content Include="Content\images\icons\48x48\6.png" />
+    <Content Include="Content\images\icons\48x48\7.png" />
+    <Content Include="Content\images\icons\48x48\8.png" />
+    <Content Include="Content\images\icons\48x48\9.png" />
+    <Content Include="Content\images\icons\48x48\Alarme.png" />
+    <Content Include="Content\images\icons\48x48\Ampersand.png" />
+    <Content Include="Content\images\icons\48x48\Application.png" />
+    <Content Include="Content\images\icons\48x48\Applications.png" />
+    <Content Include="Content\images\icons\48x48\Arrow1 Down.png" />
+    <Content Include="Content\images\icons\48x48\Arrow1 DownLeft.png" />
+    <Content Include="Content\images\icons\48x48\Arrow1 DownRight.png" />
+    <Content Include="Content\images\icons\48x48\Arrow1 Left.png" />
+    <Content Include="Content\images\icons\48x48\Arrow1 Right.png" />
+    <Content Include="Content\images\icons\48x48\Arrow1 Up.png" />
+    <Content Include="Content\images\icons\48x48\Arrow1 UpLeft.png" />
+    <Content Include="Content\images\icons\48x48\Arrow1 UpRight.png" />
+    <Content Include="Content\images\icons\48x48\Arrow2 Down.png" />
+    <Content Include="Content\images\icons\48x48\Arrow2 DownLeft.png" />
+    <Content Include="Content\images\icons\48x48\Arrow2 DownRight.png" />
+    <Content Include="Content\images\icons\48x48\Arrow2 Left.png" />
+    <Content Include="Content\images\icons\48x48\Arrow2 Right.png" />
+    <Content Include="Content\images\icons\48x48\Arrow2 Up.png" />
+    <Content Include="Content\images\icons\48x48\Arrow2 UpLeft.png" />
+    <Content Include="Content\images\icons\48x48\Arrow2 UpRight.png" />
+    <Content Include="Content\images\icons\48x48\Arrow3 Down.png" />
+    <Content Include="Content\images\icons\48x48\Arrow3 Left.png" />
+    <Content Include="Content\images\icons\48x48\Arrow3 Right.png" />
+    <Content Include="Content\images\icons\48x48\Arrow3 Up.png" />
+    <Content Include="Content\images\icons\48x48\Attach.png" />
+    <Content Include="Content\images\icons\48x48\Audio Message.png" />
+    <Content Include="Content\images\icons\48x48\Back Top.png" />
+    <Content Include="Content\images\icons\48x48\Back.png" />
+    <Content Include="Content\images\icons\48x48\Backup.png" />
+    <Content Include="Content\images\icons\48x48\Bubble 1.png" />
+    <Content Include="Content\images\icons\48x48\Bubble 3.png" />
+    <Content Include="Content\images\icons\48x48\Burn.png" />
+    <Content Include="Content\images\icons\48x48\Calc.png" />
+    <Content Include="Content\images\icons\48x48\Calendar.png" />
+    <Content Include="Content\images\icons\48x48\Cancel.png" />
+    <Content Include="Content\images\icons\48x48\Car.png" />
+    <Content Include="Content\images\icons\48x48\Card1.png" />
+    <Content Include="Content\images\icons\48x48\Card2.png" />
+    <Content Include="Content\images\icons\48x48\Card3.png" />
+    <Content Include="Content\images\icons\48x48\Card4.png" />
+    <Content Include="Content\images\icons\48x48\Cart.png" />
+    <Content Include="Content\images\icons\48x48\Cart2.png" />
+    <Content Include="Content\images\icons\48x48\Cd.png" />
+    <Content Include="Content\images\icons\48x48\Cd2.png" />
+    <Content Include="Content\images\icons\48x48\Clipboard Copy.png" />
+    <Content Include="Content\images\icons\48x48\Clipboard Cut.png" />
+    <Content Include="Content\images\icons\48x48\Clipboard Paste.png" />
+    <Content Include="Content\images\icons\48x48\Clock.png" />
+    <Content Include="Content\images\icons\48x48\Computer.png" />
+    <Content Include="Content\images\icons\48x48\Contact.png" />
+    <Content Include="Content\images\icons\48x48\Copyright.png" />
+    <Content Include="Content\images\icons\48x48\Cube.png" />
+    <Content Include="Content\images\icons\48x48\Currency Dollar.png" />
+    <Content Include="Content\images\icons\48x48\Currency Euro.png" />
+    <Content Include="Content\images\icons\48x48\Currency Pound.png" />
+    <Content Include="Content\images\icons\48x48\Database.png" />
+    <Content Include="Content\images\icons\48x48\Direction Diag1.png" />
+    <Content Include="Content\images\icons\48x48\Direction Diag2.png" />
+    <Content Include="Content\images\icons\48x48\Direction Horz.png" />
+    <Content Include="Content\images\icons\48x48\Direction Vert.png" />
+    <Content Include="Content\images\icons\48x48\Directions.png" />
+    <Content Include="Content\images\icons\48x48\Discuss.png" />
+    <Content Include="Content\images\icons\48x48\Document New.png" />
+    <Content Include="Content\images\icons\48x48\Document.png" />
+    <Content Include="Content\images\icons\48x48\Document2.png" />
+    <Content Include="Content\images\icons\48x48\Dots Down.png" />
+    <Content Include="Content\images\icons\48x48\Dots Up.png" />
+    <Content Include="Content\images\icons\48x48\Dots.png" />
+    <Content Include="Content\images\icons\48x48\Download.png" />
+    <Content Include="Content\images\icons\48x48\Edit.png" />
+    <Content Include="Content\images\icons\48x48\Email.png" />
+    <Content Include="Content\images\icons\48x48\Exclamation.png" />
+    <Content Include="Content\images\icons\48x48\Fbook.png" />
+    <Content Include="Content\images\icons\48x48\Flag.png" />
+    <Content Include="Content\images\icons\48x48\Folder.png" />
+    <Content Include="Content\images\icons\48x48\Folder2.png" />
+    <Content Include="Content\images\icons\48x48\Folder3.png" />
+    <Content Include="Content\images\icons\48x48\Footprint.png" />
+    <Content Include="Content\images\icons\48x48\Forbidden.png" />
+    <Content Include="Content\images\icons\48x48\Full Screen.png" />
+    <Content Include="Content\images\icons\48x48\Full Size.png" />
+    <Content Include="Content\images\icons\48x48\Game.png" />
+    <Content Include="Content\images\icons\48x48\Gear.png" />
+    <Content Include="Content\images\icons\48x48\Globe.png" />
+    <Content Include="Content\images\icons\48x48\Go In.png" />
+    <Content Include="Content\images\icons\48x48\Go Out.png" />
+    <Content Include="Content\images\icons\48x48\Graph.png" />
+    <Content Include="Content\images\icons\48x48\Hand.png" />
+    <Content Include="Content\images\icons\48x48\Hdd Network.png" />
+    <Content Include="Content\images\icons\48x48\Hdd.png" />
+    <Content Include="Content\images\icons\48x48\Health.png" />
+    <Content Include="Content\images\icons\48x48\Heart.png" />
+    <Content Include="Content\images\icons\48x48\Home.png" />
+    <Content Include="Content\images\icons\48x48\Home2.png" />
+    <Content Include="Content\images\icons\48x48\Info.png" />
+    <Content Include="Content\images\icons\48x48\Info2.png" />
+    <Content Include="Content\images\icons\48x48\Ipod.png" />
+    <Content Include="Content\images\icons\48x48\Key.png" />
+    <Content Include="Content\images\icons\48x48\Light.png" />
+    <Content Include="Content\images\icons\48x48\Like.png" />
+    <Content Include="Content\images\icons\48x48\link-external-48.png" />
+    <Content Include="Content\images\icons\48x48\Link.png" />
+    <Content Include="Content\images\icons\48x48\Lock Open.png" />
+    <Content Include="Content\images\icons\48x48\Lock.png" />
+    <Content Include="Content\images\icons\48x48\Loop.png" />
+    <Content Include="Content\images\icons\48x48\Luggage.png" />
+    <Content Include="Content\images\icons\48x48\Mail.png" />
+    <Content Include="Content\images\icons\48x48\Man.png" />
+    <Content Include="Content\images\icons\48x48\Microphone.png" />
+    <Content Include="Content\images\icons\48x48\Minus.png" />
+    <Content Include="Content\images\icons\48x48\Mobile.png" />
+    <Content Include="Content\images\icons\48x48\Mouse.png" />
+    <Content Include="Content\images\icons\48x48\Movie.png" />
+    <Content Include="Content\images\icons\48x48\Music.png" />
+    <Content Include="Content\images\icons\48x48\Music2.png" />
+    <Content Include="Content\images\icons\48x48\Nuke.png" />
+    <Content Include="Content\images\icons\48x48\Ok.png" />
+    <Content Include="Content\images\icons\48x48\order.png" />
+    <Content Include="Content\images\icons\48x48\Paragraph.png" />
+    <Content Include="Content\images\icons\48x48\Percent.png" />
+    <Content Include="Content\images\icons\48x48\Phone.png" />
+    <Content Include="Content\images\icons\48x48\Photo.png" />
+    <Content Include="Content\images\icons\48x48\Picture.png" />
+    <Content Include="Content\images\icons\48x48\Player Eject.png" />
+    <Content Include="Content\images\icons\48x48\Player FastFwd.png" />
+    <Content Include="Content\images\icons\48x48\Player FastRev.png" />
+    <Content Include="Content\images\icons\48x48\Player Next.png" />
+    <Content Include="Content\images\icons\48x48\Player Pause.png" />
+    <Content Include="Content\images\icons\48x48\Player Play.png" />
+    <Content Include="Content\images\icons\48x48\Player Previous.png" />
+    <Content Include="Content\images\icons\48x48\Player Record.png" />
+    <Content Include="Content\images\icons\48x48\Player Stop.png" />
+    <Content Include="Content\images\icons\48x48\Plus.png" />
+    <Content Include="Content\images\icons\48x48\pm.png" />
+    <Content Include="Content\images\icons\48x48\Podcast.png" />
+    <Content Include="Content\images\icons\48x48\Pointer.png" />
+    <Content Include="Content\images\icons\48x48\Poll.png" />
+    <Content Include="Content\images\icons\48x48\Printer.png" />
+    <Content Include="Content\images\icons\48x48\product.png" />
+    <Content Include="Content\images\icons\48x48\product_category.png" />
+    <Content Include="Content\images\icons\48x48\Puzzle.png" />
+    <Content Include="Content\images\icons\48x48\Question.png" />
+    <Content Include="Content\images\icons\48x48\Reduced Size.png" />
+    <Content Include="Content\images\icons\48x48\Refresh.png" />
+    <Content Include="Content\images\icons\48x48\Restore.png" />
+    <Content Include="Content\images\icons\48x48\Rss 1.png" />
+    <Content Include="Content\images\icons\48x48\Rss 2.png" />
+    <Content Include="Content\images\icons\48x48\Rss.png" />
+    <Content Include="Content\images\icons\48x48\Save.png" />
+    <Content Include="Content\images\icons\48x48\Screen.png" />
+    <Content Include="Content\images\icons\48x48\Search.png" />
+    <Content Include="Content\images\icons\48x48\Security.png" />
+    <Content Include="Content\images\icons\48x48\shopping_cart.png" />
+    <Content Include="Content\images\icons\48x48\Sitemap.png" />
+    <Content Include="Content\images\icons\48x48\Size Diag1.png" />
+    <Content Include="Content\images\icons\48x48\Size Diag2.png" />
+    <Content Include="Content\images\icons\48x48\Size Horz.png" />
+    <Content Include="Content\images\icons\48x48\Size Vert.png" />
+    <Content Include="Content\images\icons\48x48\Sleep.png" />
+    <Content Include="Content\images\icons\48x48\Smiley1.png" />
+    <Content Include="Content\images\icons\48x48\Smiley2.png" />
+    <Content Include="Content\images\icons\48x48\Smiley3.png" />
+    <Content Include="Content\images\icons\48x48\Sound Minus.png" />
+    <Content Include="Content\images\icons\48x48\Sound Off.png" />
+    <Content Include="Content\images\icons\48x48\Sound On.png" />
+    <Content Include="Content\images\icons\48x48\Sound Plus.png" />
+    <Content Include="Content\images\icons\48x48\Standby.png" />
+    <Content Include="Content\images\icons\48x48\Star.png" />
+    <Content Include="Content\images\icons\48x48\Start.png" />
+    <Content Include="Content\images\icons\48x48\Stats 3.png" />
+    <Content Include="Content\images\icons\48x48\Stats.png" />
+    <Content Include="Content\images\icons\48x48\Stats2.png" />
+    <Content Include="Content\images\icons\48x48\Table.png" />
+    <Content Include="Content\images\icons\48x48\Tag.png" />
+    <Content Include="Content\images\icons\48x48\Target.png" />
+    <Content Include="Content\images\icons\48x48\Text Large.png" />
+    <Content Include="Content\images\icons\48x48\Text Meduim.png" />
+    <Content Include="Content\images\icons\48x48\Text Minus.png" />
+    <Content Include="Content\images\icons\48x48\Text Plus.png" />
+    <Content Include="Content\images\icons\48x48\Text Small.png" />
+    <Content Include="Content\images\icons\48x48\Thumb Down.png" />
+    <Content Include="Content\images\icons\48x48\Thumb Up.png" />
+    <Content Include="Content\images\icons\48x48\Tool.png" />
+    <Content Include="Content\images\icons\48x48\Trackback.png" />
+    <Content Include="Content\images\icons\48x48\Trash.png" />
+    <Content Include="Content\images\icons\48x48\Travel.png" />
+    <Content Include="Content\images\icons\48x48\Tree.png" />
+    <Content Include="Content\images\icons\48x48\TV.png" />
+    <Content Include="Content\images\icons\48x48\User.png" />
+    <Content Include="Content\images\icons\48x48\UserRoleManager.png" />
+    <Content Include="Content\images\icons\48x48\Video.png" />
+    <Content Include="Content\images\icons\48x48\Wait.png" />
+    <Content Include="Content\images\icons\48x48\Warning.png" />
+    <Content Include="Content\images\icons\48x48\Weather Cloud.png" />
+    <Content Include="Content\images\icons\48x48\Weather Could Sun.png" />
+    <Content Include="Content\images\icons\48x48\Weather Rain.png" />
+    <Content Include="Content\images\icons\48x48\Weather Snow.png" />
+    <Content Include="Content\images\icons\48x48\Weather Sun.png" />
+    <Content Include="Content\images\icons\48x48\Wizard.png" />
+    <Content Include="Content\images\icons\48x48\Woman.png" />
+    <Content Include="Content\images\icons\48x48\Wordpress.png" />
+    <Content Include="Content\images\icons\48x48\Write.png" />
+    <Content Include="Content\images\icons\48x48\Zoom In.png" />
+    <Content Include="Content\images\icons\48x48\Zoom Out.png" />
+    <Content Include="Content\images\icons\512x512\Backup.png" />
+    <Content Include="Content\images\icons\512x512\Like.png" />
+    <Content Include="Content\images\icons\512x512\pm.png" />
+    <Content Include="Content\images\icons\512x512\Restore.png" />
+    <Content Include="Content\images\icons\512x512\Rss.png" />
+    <Content Include="Content\images\icons\64x64\Announcements.png" />
+    <Content Include="Content\images\icons\64x64\Backup.png" />
+    <Content Include="Content\images\icons\64x64\Calendar.png" />
+    <Content Include="Content\images\icons\64x64\ChatManager.png" />
+    <Content Include="Content\images\icons\64x64\Comments.png" />
+    <Content Include="Content\images\icons\64x64\Configuration.png" />
+    <Content Include="Content\images\icons\64x64\DatabaseBackup.png" />
+    <Content Include="Content\images\icons\64x64\DatabaseExecute.png" />
+    <Content Include="Content\images\icons\64x64\DatabaseQuery.png" />
+    <Content Include="Content\images\icons\64x64\DatabaseUtilities.png" />
+    <Content Include="Content\images\icons\64x64\FileManager.png" />
+    <Content Include="Content\images\icons\64x64\ForumManager.png" />
+    <Content Include="Content\images\icons\64x64\Home.png" />
+    <Content Include="Content\images\icons\64x64\image-icon.png" />
+    <Content Include="Content\images\icons\64x64\Like.png" />
+    <Content Include="Content\images\icons\64x64\link-external-64.png" />
+    <Content Include="Content\images\icons\64x64\LinkManager.png" />
+    <Content Include="Content\images\icons\64x64\MailingList.png" />
+    <Content Include="Content\images\icons\64x64\MailingListCampaign.png" />
+    <Content Include="Content\images\icons\64x64\MailingListSubscribers.png" />
+    <Content Include="Content\images\icons\64x64\MenuManager.png" />
+    <Content Include="Content\images\icons\64x64\ModuleManager.png" />
+    <Content Include="Content\images\icons\64x64\order.png" />
+    <Content Include="Content\images\icons\64x64\PageManager.png" />
+    <Content Include="Content\images\icons\64x64\PictureManager.png" />
+    <Content Include="Content\images\icons\64x64\PluginManager.png" />
+    <Content Include="Content\images\icons\64x64\pm.png" />
+    <Content Include="Content\images\icons\64x64\PollManager.png" />
+    <Content Include="Content\images\icons\64x64\DatabaseRestore.png" />
+    <Content Include="Content\images\icons\64x64\product.png" />
+    <Content Include="Content\images\icons\64x64\product_category.png" />
+    <Content Include="Content\images\icons\64x64\Restore.png" />
+    <Content Include="Content\images\icons\64x64\Rss.png" />
+    <Content Include="Content\images\icons\64x64\shopping_cart.png" />
+    <Content Include="Content\images\icons\64x64\SlideShow.png" />
+    <Content Include="Content\images\icons\64x64\Statistics.png" />
+    <Content Include="Content\images\icons\64x64\subcategory.png" />
+    <Content Include="Content\images\icons\64x64\UserManager.png" />
+    <Content Include="Content\images\icons\64x64\UserRoleManager.png" />
+    <Content Include="Content\images\icons\64x64\VideoManager.png" />
+    <Content Include="Content\images\icons\arrow_down.png" />
+    <Content Include="Content\images\icons\arrow_up.png" />
+    <Content Include="Content\images\icons\blank_9.png" />
+    <Content Include="Content\images\icons\ReadMe.txt" />
+    <Content Include="Content\images\Logo_Large.jpg" />
+    <Content Include="Content\images\Logo_Large.png" />
+    <Content Include="Content\images\Logo_Small.png" />
+    <Content Include="Content\images\logs.png" />
+    <Content Include="Content\images\mail-add.png" />
+    <Content Include="Content\images\mail-delete.png" />
+    <Content Include="Content\images\mobile-nav-icon.png" />
+    <Content Include="Content\images\rss-icon.png" />
+    <Content Include="Content\images\social-icons\aim.png" />
+    <Content Include="Content\images\social-icons\ask.png" />
+    <Content Include="Content\images\social-icons\bebo.png" />
+    <Content Include="Content\images\social-icons\betvibes.png" />
+    <Content Include="Content\images\social-icons\blinklist.png" />
+    <Content Include="Content\images\social-icons\blogger.png" />
+    <Content Include="Content\images\social-icons\buzz.png" />
+    <Content Include="Content\images\social-icons\delicious.png" />
+    <Content Include="Content\images\social-icons\deviantart.png" />
+    <Content Include="Content\images\social-icons\digg.png" />
+    <Content Include="Content\images\social-icons\diigo.png" />
+    <Content Include="Content\images\social-icons\everynote.png" />
+    <Content Include="Content\images\social-icons\facebook.png" />
+    <Content Include="Content\images\social-icons\flickr.png" />
+    <Content Include="Content\images\social-icons\friendfeed.png" />
+    <Content Include="Content\images\social-icons\friendster.png" />
+    <Content Include="Content\images\social-icons\furl.png" />
+    <Content Include="Content\images\social-icons\google.png" />
+    <Content Include="Content\images\social-icons\lastfm.png" />
+    <Content Include="Content\images\social-icons\linkedin.png" />
+    <Content Include="Content\images\social-icons\livejournal.png" />
+    <Content Include="Content\images\social-icons\mixx.png" />
+    <Content Include="Content\images\social-icons\myspace.png" />
+    <Content Include="Content\images\social-icons\newsvine.png" />
+    <Content Include="Content\images\social-icons\orkut.png" />
+    <Content Include="Content\images\social-icons\plaxo.png" />
+    <Content Include="Content\images\social-icons\plurk.png" />
+    <Content Include="Content\images\social-icons\posterous.png" />
+    <Content Include="Content\images\social-icons\reddit.png" />
+    <Content Include="Content\images\social-icons\rss.png" />
+    <Content Include="Content\images\social-icons\shoutwire.png" />
+    <Content Include="Content\images\social-icons\spurl.png" />
+    <Content Include="Content\images\social-icons\squidoo.png" />
+    <Content Include="Content\images\social-icons\stumbleupon.png" />
+    <Content Include="Content\images\social-icons\technorati.png" />
+    <Content Include="Content\images\social-icons\tumblr.png" />
+    <Content Include="Content\images\social-icons\twitter.png" />
+    <Content Include="Content\images\social-icons\vimeo.png" />
+    <Content Include="Content\images\social-icons\wordpress.png" />
+    <Content Include="Content\images\social-icons\xanga.png" />
+    <Content Include="Content\images\social-icons\yahoo.png" />
+    <Content Include="Content\images\social-icons\youtube.png" />
+    <Content Include="Content\images\solve-tick.png" />
+    <Content Include="Content\images\up-arrow.png" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Pictures\Thumb\PictureAlbumIcon.png" />
+    <Content Include="Content\Products\Full\.gitignore" />
+    <Content Include="Content\Products\Full\index.html" />
+    <Content Include="Content\Products\index.html" />
+    <Content Include="Content\Products\Thumb\.gitignore" />
+    <Content Include="Content\Products\Thumb\index.html" />
+    <Content Include="Content\Products\Thumb\PictureAlbumIcon.png" />
+    <Content Include="Content\Slides\Full\index.html" />
+    <Content Include="Content\Slides\index.html" />
+    <Content Include="Content\Slides\Thumb\index.html" />
+    <Content Include="Content\Styles\Theme.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_55_999999_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_45_0078ae_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_f8da4e_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_79c9ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_gloss-wave_45_e14f1c_500x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_gloss-wave_50_6eac2c_500x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_gloss-wave_75_2191c0_500x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_0078ae_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_056b93_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_e0fdff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_f5e175_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_f7a50d_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_fcd113_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\jquery-ui.structure.css" />
+    <Content Include="Content\themes\base\jquery-ui.structure.min.css" />
+    <Content Include="Content\themes\base\jquery-ui.theme.css" />
+    <Content Include="Content\themes\base\jquery-ui.theme.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\uploads\readme.txt" />
+    <Content Include="Content\Pictures\Full\index.html" />
+    <Content Include="Content\Pictures\index.html" />
+    <Content Include="Content\Pictures\Thumb\index.html" />
+    <Content Include="Content\Videos\Full\index.html" />
+    <Content Include="Content\Videos\index.html" />
+    <Content Include="Content\Videos\Thumb\index.html" />
+    <Content Include="Content\Videos\Thumb\VideoAlbumIcon.png" />
+    <Content Include="Docs\Developers\DevTrends.MvcDonutCaching.README.txt" />
+    <Content Include="Docs\Developers\Adding_HTML_Editor_For_Field.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="Files\ReadMe.txt" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\admin\Admin.js" />
+    <Content Include="Scripts\admin\FadeOutMessage.js" />
+    <Content Include="Scripts\admin\ProductOptionsCrud.js" />
+    <Content Include="Scripts\bbeditor\jquery.sceditor.default.min.css" />
+    <Content Include="Scripts\bbeditor\jquery.sceditor.min.css" />
+    <Content Include="Scripts\bbeditor\jquery.sceditor.min.js" />
+    <Content Include="Scripts\bbeditor\jquery.sceditor.min.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PageManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PageManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PageManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\PageManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PageManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AnnouncementsManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AnnouncementsManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AnnouncementsManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\AnnouncementsManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AnnouncementsManager\Index.cshtml" />
+    <Content Include="Docs\Developers\ReadMe.md" />
+    <Content Include="Docs\Users\ReadMe.md" />
+    <Content Include="Areas\Admin\Views\UserManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ConfigurationManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ConfigurationManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ConfigurationManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ConfigurationManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ConfigurationManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DatabaseUtilities\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DatabaseUtilities\Backup.cshtml" />
+    <Content Include="Areas\Admin\Views\DatabaseUtilities\Restore.cshtml" />
+    <Content Include="Areas\Admin\Views\DatabaseUtilities\Query.cshtml" />
+    <Content Include="Areas\Admin\Views\DatabaseUtilities\Execute.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\FileManager\Index.cshtml" />
+    <Content Include="Content\images\Logo_Large.psd" />
+    <Content Include="Areas\Admin\Views\PictureManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PictureManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PictureManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\PictureManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PictureManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PictureManager\PictureList.cshtml" />
+    <Content Include="Areas\Admin\Views\PictureAlbumManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PictureAlbumManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PictureAlbumManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\PictureAlbumManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PictureAlbumManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\VideoAlbumManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\VideoAlbumManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\VideoAlbumManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\VideoAlbumManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\VideoAlbumManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\VideoManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\VideoManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\VideoManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\VideoManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\VideoManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\VideoManager\VideoList.cshtml" />
+    <Content Include="Areas\Forum\Views\Badge\AllBadges.cshtml" />
+    <Content Include="Areas\Forum\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Forum\Views\Category\ListCategorySideMenu.cshtml" />
+    <Content Include="Areas\Forum\Views\Category\Show.cshtml" />
+    <Content Include="Areas\Forum\Views\Closed\Index.cshtml" />
+    <Content Include="Areas\Forum\Views\Members\AdminMemberProfileTools.cshtml" />
+    <Content Include="Areas\Forum\Views\Members\GetByName.cshtml" />
+    <Content Include="Areas\Forum\Views\Members\GetCurrentActiveMembers.cshtml" />
+    <Content Include="Areas\Forum\Views\Members\GetMemberDiscussions.cshtml" />
+    <Content Include="Areas\Forum\Views\Members\LatestMembersJoined.cshtml" />
+    <Content Include="Areas\Forum\Views\Members\Report.cshtml" />
+    <Content Include="Areas\Forum\Views\Members\Search.cshtml" />
+    <Content Include="Areas\Forum\Views\Members\SideAdminPanel.cshtml" />
+    <Content Include="Areas\Forum\Views\Point\CurrentWeekHighPointUsers.cshtml" />
+    <Content Include="Areas\Forum\Views\Post\EditPost.cshtml" />
+    <Content Include="Areas\Forum\Views\Post\Report.cshtml" />
+    <Content Include="Areas\Forum\Views\PrivateMessage\Create.cshtml" />
+    <Content Include="Areas\Forum\Views\PrivateMessage\Index.cshtml" />
+    <Content Include="Areas\Forum\Views\PrivateMessage\SentMessages.cshtml" />
+    <Content Include="Areas\Forum\Views\PrivateMessage\View.cshtml" />
+    <Content Include="Areas\Forum\Views\Search\Index.cshtml" />
+    <Content Include="Areas\Forum\Views\Search\SideSearch.cshtml" />
+    <Content Include="Areas\Forum\Views\Search\Testing.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\EditorTemplates\bbeditor.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\EditorTemplates\markdowneditor.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\EditorTemplates\tinymceeditor.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_CreateNewPost.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_EmailConfirmationNotice.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_GenericMessage.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_LanguagePartial.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_NoScript.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_Poll.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_Post.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_SubCategories.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_Topic.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_TopicSlim.cshtml" />
+    <Content Include="Areas\Forum\Views\Snippets\GetThisWeeksTopEarners.cshtml" />
+    <Content Include="Areas\Forum\Views\Snippets\GetThisYearsTopEarners.cshtml" />
+    <Content Include="Areas\Forum\Views\Stats\GetMainStats.cshtml" />
+    <Content Include="Areas\Forum\Views\Tag\PopularTags.cshtml" />
+    <Content Include="Areas\Forum\Views\Topic\AjaxMorePosts.cshtml" />
+    <Content Include="Areas\Forum\Views\Topic\Create.cshtml" />
+    <Content Include="Areas\Forum\Views\Topic\CreateTopicButton.cshtml" />
+    <Content Include="Areas\Forum\Views\Topic\GetSimilarTopics.cshtml" />
+    <Content Include="Areas\Forum\Views\Topic\MoveTopic.cshtml" />
+    <Content Include="Areas\Forum\Views\Topic\Show.cshtml" />
+    <Content Include="Areas\Forum\Views\Topic\TopicsByTag.cshtml" />
+    <Content Include="Areas\Forum\Views\Vote\GetVoters.cshtml" />
+    <Content Include="Areas\Forum\Views\Vote\GetVotes.cshtml" />
+    <Content Include="Areas\Forum\Views\Web.config" />
+    <Content Include="Areas\Forum\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Log\Index.cshtml" />
+    <Content Include="Installer\en-GB.csv" />
+    <Content Include="Areas\Admin\Views\Forum\AdminBadge\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminCategory\CreateCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminCategory\DeleteCategoryConfirmation.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminCategory\EditCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminCategory\GetMainCategories.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminCategory\ListAllCategories.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminCategory\PopupConfirm.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminLanguage\AddResourceKey.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminLanguage\CreateLanguage.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminLanguage\DeleteLanguageConfirmation.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminLanguage\DeleteResourceConfirmation.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminLanguage\GetLanguages.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminLanguage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminLanguage\ListAllValues.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminLanguage\ListKeys.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminLanguage\ListValues.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminLucene\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\AdminTag\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\ForumManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\BannedEmail\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\BannedWord\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Batch\BatchDeleteMembers.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Batch\BatchMoveTopics.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Batch\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\ForumAccount\AddRole.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\ForumAccount\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\ForumAccount\EditRole.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\ForumAccount\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\ForumAccount\ListAllRoles.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\ImportExport\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\ImportExport\Languages.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\ImportExport\Members.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Log\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Panel\HighestViewedTopics.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Panel\LatestUsers.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Panel\LowestPointPosts.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Panel\LowestPointUsers.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Panel\MvcForumLatestNews.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Panel\TodaysTopics.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Permissions\AddType.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Permissions\EditPermissions.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Permissions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Settings\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Settings\TestEmail.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Shared\_AdminBlankLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Shared\_AdminFullWidthLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Shared\_LanguageOptions.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Shared\_GetCurrentVersion.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\Shared\_GenericMessage.cshtml" />
+    <Content Include="Areas\Forum\Views\ForumHome\Activity.cshtml" />
+    <Content Include="Areas\Forum\Views\ForumHome\Index.cshtml" />
+    <Content Include="Areas\Forum\Views\ForumHome\Leaderboard.cshtml" />
+    <Content Include="Areas\Forum\Views\ForumHome\UploadFiles.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategoryManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategoryManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategoryManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategoryManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategoryManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRoleManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRoleManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRoleManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRoleManager\ManageUserRoles.cshtml" />
+    <Content Include="Areas\Admin\Views\ModuleManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PollManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\StatisticsManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChatManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChatManager\Purge.cshtml" />
+    <Content Include="Areas\Admin\Views\ChatManager\Export.cshtml" />
+    <Content Include="Areas\Admin\Views\StatisticsManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\StatisticsManager\VisitorCountryChart.cshtml" />
+    <Content Include="Areas\Admin\Views\StatisticsManager\Purge.cshtml" />
+    <Content Include="Areas\Admin\Views\StatisticsManager\Export.cshtml" />
+    <Content Include="Areas\Admin\Views\PollManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\PollManager\CreateAnswer.cshtml" />
+    <Content Include="Areas\Admin\Views\PollManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PollManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PollManager\EditAnswer.cshtml" />
+    <Content Include="Areas\Admin\Views\PluginManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PluginManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PluginManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\PluginManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PluginManager\Index.cshtml" />
+    <Content Include="Installer\en-US.csv" />
+    <Content Include="App_Data\GeoLite2-Country.mmdb" />
+    <Content Include="Areas\Admin\Views\MailingListManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListManager\List.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListSubscriberManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListSubscriberManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListSubscriberManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListSubscriberManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListSubscriberManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListCampaignManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListCampaignManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListCampaignManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListCampaignManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListCampaignManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListImageManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MailingListImageManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkCategoryManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkCategoryManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkCategoryManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkCategoryManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkCategoryManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LinkManager\List.cshtml" />
+    <Content Include="Areas\Admin\Views\ModuleManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ModuleManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ModuleManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ModuleManager\Delete.cshtml" />
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\Search.cshtml" />
+    <Content Include="Areas\Admin\Views\PollManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SlideShowManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SlideShowManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SlideShowManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\SlideShowManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SlideShowManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentConfigManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentConfigManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentConfigManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentConfigManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentConfigManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentPostsManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentPostsManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentPostsManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentPostsManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentPostsManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DatabaseUtilities\BackupToXML.cshtml" />
+    <Content Include="Areas\Admin\Views\DatabaseUtilities\RestoreFromXML.cshtml" />
+    <Content Include="Areas\Admin\Views\DatabaseUtilities\RestoreFromTables.cshtml" />
+    <Content Include="Areas\Admin\Views\RSSManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\RSSManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\RSSManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\RSSManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RSSManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PictureManager\Approve.cshtml" />
+    <None Include="Properties\PublishProfiles\Dev.pubxml" />
+    <None Include="Properties\PublishProfiles\Production.pubxml" />
+    <Content Include="Scripts\elfinder\Changelog" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\dashboard.js" />
+    <Content Include="Scripts\fancybox\blank.gif" />
+    <Content Include="Scripts\fancybox\fancybox_loading.gif" />
+    <Content Include="Scripts\fancybox\fancybox_sprite.png" />
+    <Content Include="Scripts\fancybox\helpers\fancybox_buttons.png" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-media.js" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Scripts\fancybox\jquery.fancybox.css" />
+    <Content Include="Scripts\fancybox\jquery.fancybox.js" />
+    <Content Include="Scripts\fancybox\jquery.fancybox.pack.js" />
+    <Content Include="Scripts\general.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-migrate-1.2.1.js" />
+    <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.placeholder.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
+    <Content Include="Scripts\jquery.tagsinput.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\leaderboard.js" />
+    <Content Include="Scripts\markdown\Markdown.Converter.js" />
+    <Content Include="Scripts\markdown\markdown.css" />
+    <Content Include="Scripts\markdown\Markdown.Editor.js" />
+    <Content Include="Scripts\markdown\Markdown.Sanitizer.js" />
+    <Content Include="Scripts\markdown\node-pagedown.js" />
+    <Content Include="Scripts\markdown\wmd-buttons.png" />
+    <Content Include="Scripts\memberprofiles.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\tags.js" />
+    <Content Include="Scripts\tinymce\jquery.tinymce.js" />
+    <Content Include="Scripts\tinymce\langs\en.js" />
+    <Content Include="Scripts\tinymce\license.txt" />
+    <Content Include="Scripts\tinymce\plugins\advhr\css\advhr.css" />
+    <Content Include="Scripts\tinymce\plugins\advhr\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\advhr\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\advhr\js\rule.js" />
+    <Content Include="Scripts\tinymce\plugins\advhr\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\plugins\advhr\rule.htm" />
+    <Content Include="Scripts\tinymce\plugins\advimage\css\advimage.css" />
+    <Content Include="Scripts\tinymce\plugins\advimage\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\advimage\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\advimage\image.htm" />
+    <Content Include="Scripts\tinymce\plugins\advimage\img\sample.gif" />
+    <Content Include="Scripts\tinymce\plugins\advimage\js\image.js" />
+    <Content Include="Scripts\tinymce\plugins\advimage\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\plugins\advlink\css\advlink.css" />
+    <Content Include="Scripts\tinymce\plugins\advlink\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\advlink\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\advlink\js\advlink.js" />
+    <Content Include="Scripts\tinymce\plugins\advlink\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\plugins\advlink\link.htm" />
+    <Content Include="Scripts\tinymce\plugins\advlist\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\advlist\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\langs\en.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\emotions\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\emotions\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\emotions\emotions.htm" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-cool.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-cry.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-embarassed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-frown.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-innocent.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-kiss.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-laughing.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-money-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-sealed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-smile.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-surprised.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-tongue-out.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-undecided.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-wink.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\img\smiley-yell.gif" />
+    <Content Include="Scripts\tinymce\plugins\emotions\js\emotions.js" />
+    <Content Include="Scripts\tinymce\plugins\emotions\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\plugins\example\dialog.htm" />
+    <Content Include="Scripts\tinymce\plugins\example\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\example\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\example\img\example.gif" />
+    <Content Include="Scripts\tinymce\plugins\example\js\dialog.js" />
+    <Content Include="Scripts\tinymce\plugins\example\langs\en.js" />
+    <Content Include="Scripts\tinymce\plugins\example\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\plugins\example_dependency\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\example_dependency\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\css\fullpage.css" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\fullpage.htm" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\js\fullpage.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\fullscreen.htm" />
+    <Content Include="Scripts\tinymce\plugins\iespell\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\iespell\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\inlinepopups\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\inlinepopups\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\inlinepopups\skins\clearlooks2\img\alert.gif" />
+    <Content Include="Scripts\tinymce\plugins\inlinepopups\skins\clearlooks2\img\button.gif" />
+    <Content Include="Scripts\tinymce\plugins\inlinepopups\skins\clearlooks2\img\buttons.gif" />
+    <Content Include="Scripts\tinymce\plugins\inlinepopups\skins\clearlooks2\img\confirm.gif" />
+    <Content Include="Scripts\tinymce\plugins\inlinepopups\skins\clearlooks2\img\corners.gif" />
+    <Content Include="Scripts\tinymce\plugins\inlinepopups\skins\clearlooks2\img\horizontal.gif" />
+    <Content Include="Scripts\tinymce\plugins\inlinepopups\skins\clearlooks2\img\vertical.gif" />
+    <Content Include="Scripts\tinymce\plugins\inlinepopups\skins\clearlooks2\window.css" />
+    <Content Include="Scripts\tinymce\plugins\inlinepopups\template.htm" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\layer\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\layer\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\media\css\media.css" />
+    <Content Include="Scripts\tinymce\plugins\media\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\media\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\media\js\embed.js" />
+    <Content Include="Scripts\tinymce\plugins\media\js\media.js" />
+    <Content Include="Scripts\tinymce\plugins\media\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\plugins\media\media.htm" />
+    <Content Include="Scripts\tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\js\pastetext.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\js\pasteword.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\pastetext.htm" />
+    <Content Include="Scripts\tinymce\plugins\paste\pasteword.htm" />
+    <Content Include="Scripts\tinymce\plugins\preview\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\example.html" />
+    <Content Include="Scripts\tinymce\plugins\preview\jscripts\embed.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\preview.html" />
+    <Content Include="Scripts\tinymce\plugins\print\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\print\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\save\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\save\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\css\searchreplace.css" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\js\searchreplace.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\searchreplace.htm" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\css\content.css" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\img\wline.gif" />
+    <Content Include="Scripts\tinymce\plugins\style\css\props.css" />
+    <Content Include="Scripts\tinymce\plugins\style\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\style\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\style\js\props.js" />
+    <Content Include="Scripts\tinymce\plugins\style\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\plugins\style\props.htm" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\table\cell.htm" />
+    <Content Include="Scripts\tinymce\plugins\table\css\cell.css" />
+    <Content Include="Scripts\tinymce\plugins\table\css\row.css" />
+    <Content Include="Scripts\tinymce\plugins\table\css\table.css" />
+    <Content Include="Scripts\tinymce\plugins\table\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\table\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\table\js\cell.js" />
+    <Content Include="Scripts\tinymce\plugins\table\js\merge_cells.js" />
+    <Content Include="Scripts\tinymce\plugins\table\js\row.js" />
+    <Content Include="Scripts\tinymce\plugins\table\js\table.js" />
+    <Content Include="Scripts\tinymce\plugins\table\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\plugins\table\merge_cells.htm" />
+    <Content Include="Scripts\tinymce\plugins\table\row.htm" />
+    <Content Include="Scripts\tinymce\plugins\table\table.htm" />
+    <Content Include="Scripts\tinymce\plugins\template\blank.htm" />
+    <Content Include="Scripts\tinymce\plugins\template\css\template.css" />
+    <Content Include="Scripts\tinymce\plugins\template\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\template\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\template\js\template.js" />
+    <Content Include="Scripts\tinymce\plugins\template\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\plugins\template\template.htm" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\abbr.htm" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\acronym.htm" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\attributes.htm" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\cite.htm" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\css\attributes.css" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\css\popup.css" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\del.htm" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\editor_plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\ins.htm" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\js\abbr.js" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\js\acronym.js" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\js\attributes.js" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\js\cite.js" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\js\del.js" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\js\element_common.js" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\js\ins.js" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\about.htm" />
+    <Content Include="Scripts\tinymce\themes\advanced\anchor.htm" />
+    <Content Include="Scripts\tinymce\themes\advanced\charmap.htm" />
+    <Content Include="Scripts\tinymce\themes\advanced\color_picker.htm" />
+    <Content Include="Scripts\tinymce\themes\advanced\editor_template.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\editor_template_src.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\image.htm" />
+    <Content Include="Scripts\tinymce\themes\advanced\img\colorpicker.jpg" />
+    <Content Include="Scripts\tinymce\themes\advanced\img\flash.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\img\icons.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\img\iframe.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\img\pagebreak.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\img\quicktime.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\img\realmedia.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\img\shockwave.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\img\trans.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\img\video.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\img\windowsmedia.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\js\about.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\js\anchor.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\js\charmap.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\js\color_picker.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\js\image.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\js\link.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\js\source_editor.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\langs\en.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\link.htm" />
+    <Content Include="Scripts\tinymce\themes\advanced\shortcuts.htm" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\default\content.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\default\dialog.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\default\img\buttons.png" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\default\img\items.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\default\img\menu_arrow.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\default\img\menu_check.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\default\img\progress.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\default\img\tabs.gif" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\default\ui.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\highcontrast\content.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\highcontrast\dialog.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\highcontrast\ui.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\o2k7\content.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\o2k7\dialog.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\o2k7\img\button_bg.png" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\o2k7\img\button_bg_black.png" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\o2k7\img\button_bg_silver.png" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\o2k7\ui.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\o2k7\ui_black.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\o2k7\ui_silver.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\source_editor.htm" />
+    <Content Include="Scripts\tinymce\themes\simple\editor_template.js" />
+    <Content Include="Scripts\tinymce\themes\simple\editor_template_src.js" />
+    <Content Include="Scripts\tinymce\themes\simple\img\icons.gif" />
+    <Content Include="Scripts\tinymce\themes\simple\langs\en.js" />
+    <Content Include="Scripts\tinymce\themes\simple\skins\default\content.css" />
+    <Content Include="Scripts\tinymce\themes\simple\skins\default\ui.css" />
+    <Content Include="Scripts\tinymce\themes\simple\skins\o2k7\content.css" />
+    <Content Include="Scripts\tinymce\themes\simple\skins\o2k7\img\button_bg.png" />
+    <Content Include="Scripts\tinymce\themes\simple\skins\o2k7\ui.css" />
+    <Content Include="Scripts\tinymce\tiny_mce.js" />
+    <Content Include="Scripts\tinymce\tiny_mce_popup.js" />
+    <Content Include="Scripts\tinymce\tiny_mce_src.js" />
+    <Content Include="Scripts\tinymce\utils\editable_selects.js" />
+    <Content Include="Scripts\tinymce\utils\form_utils.js" />
+    <Content Include="Scripts\tinymce\utils\mctabs.js" />
+    <Content Include="Scripts\tinymce\utils\validate.js" />
+    <Content Include="Scripts\topic.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Sounds\rm.wav" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Menu\TopMenu.cshtml" />
+    <Content Include="Views\Menu\LeftMenu.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\tinymce_jquery_full.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Page\ByID.cshtml" />
+    <Content Include="Views\Page\ByName.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Home\Announcements.cshtml" />
+    <Content Include="Views\Links\Index.cshtml" />
+    <Content Include="Views\Pictures\Index.cshtml" />
+    <Content Include="Views\Videos\Index.cshtml" />
+    <Content Include="Views\Videos\List.cshtml" />
+    <Content Include="Views\Pictures\List.cshtml" />
+    <Content Include="Views\Chat\Index.cshtml" />
+    <Content Include="Views\Store\Index.cshtml" />
+    <Content Include="Views\Store\Details.cshtml" />
+    <Content Include="Views\Store\List.cshtml" />
+    <Content Include="Views\Store\Checkout.cshtml" />
+    <Content Include="Views\Store\Confirmation.cshtml" />
+    <Content Include="Views\Menu\StoreMenu.cshtml" />
+    <Content Include="Views\Store\ByCategory.cshtml" />
+    <Content Include="Views\Store\History.cshtml" />
+    <Content Include="Views\SearchPages\Index.cshtml" />
+    <Content Include="Views\PollCharts\Index.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Menu\PollMenu.cshtml" />
+    <Content Include="Views\Menu\PluginMenu.cshtml" />
+    <Content Include="Views\Twitter\Index.cshtml" />
+    <Content Include="Views\Menu\TwitterMenu.cshtml" />
+    <Content Include="Views\PrivateMessages\Index.cshtml" />
+    <Content Include="Views\PrivateMessages\Create.cshtml" />
+    <Content Include="Views\PrivateMessages\Details.cshtml" />
+    <Content Include="Views\Menu\WhoIsOnlineMenu.cshtml" />
+    <Content Include="Views\MailingList\Index.cshtml" />
+    <Content Include="Views\MailingList\EmailDisplay.cshtml" />
+    <Content Include="Views\MailingList\Unsubscribe.cshtml" />
+    <Content Include="Views\MailingList\UnsubscribeConfirmaiton.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Home\ContactUsConfirmation.cshtml" />
+    <Content Include="Views\Menu\ZoneMenu.cshtml" />
+    <Content Include="Views\Links\LinkBox.cshtml" />
+    <Content Include="Views\Polls\Index.cshtml" />
+    <Content Include="Views\Polls\Add.cshtml" />
+    <Content Include="Views\Polls\Details.cshtml" />
+    <Content Include="Views\Menu\SlideShow.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Menu\CommentsMenu.cshtml" />
+    <Content Include="Views\Comments\List.cshtml" />
+    <Content Include="Views\Profile\ShowDetails.cshtml" />
+    <Content Include="Views\Menu\RSSFeed.cshtml" />
+    <Content Include="Views\Menu\LatestPictures.cshtml" />
+    <Content Include="Views\Account\_Login.cshtml" />
+    <Content Include="Views\Pictures\Add.cshtml" />
+    <Content Include="Views\Profile\Pictures.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Forum\Models\" />
+    <Folder Include="Scripts\Prettify\" />
+    <Folder Include="Views\Home\Partial\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Badges\Badges.csproj">
+      <Project>{72cb63cc-41b2-495a-86f7-f233a8a6c0b0}</Project>
+      <Name>Badges</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\digioz.Portal.BLL\digioz.Portal.BLL.csproj">
+      <Project>{C202A8BB-0185-4A40-9DF4-7BC6F3A8904F}</Project>
+      <Name>digioz.Portal.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\digioz.Portal.Data\digioz.Portal.Data.csproj">
+      <Project>{70098137-973b-45c3-99c6-7981c1a60b39}</Project>
+      <Name>digioz.Portal.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\digioz.Portal.Domain\digioz.Portal.Domain.csproj">
+      <Project>{724c4451-95b3-41a1-8f77-af8057974c53}</Project>
+      <Name>digioz.Portal.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\digioz.Portal.IOC\digioz.Portal.IOC.csproj">
+      <Project>{b3a94898-2420-4fc0-8774-147fde3b13b2}</Project>
+      <Name>digioz.Portal.IOC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\digioz.Portal.Payment\digioz.Portal.Payment.csproj">
+      <Project>{09927659-3ac6-4b19-a4ad-7e1f77368497}</Project>
+      <Name>digioz.Portal.Payment</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\digioz.Portal.Service\digioz.Portal.Service.csproj">
+      <Project>{999dc22c-3086-4a9d-a0b5-d5d4554c5251}</Project>
+      <Name>digioz.Portal.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\digioz.Portal.Utilities\digioz.Portal.Utilities.csproj">
+      <Project>{d0ce5e27-041d-4f1e-8c8c-5f4888c72155}</Project>
+      <Name>digioz.Portal.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElFinder.Net\ElFinder.Net.csproj">
+      <Project>{4635b781-a1a1-40a3-b57d-26cf552695bb}</Project>
+      <Name>ElFinder.Net</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2862</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:7777/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

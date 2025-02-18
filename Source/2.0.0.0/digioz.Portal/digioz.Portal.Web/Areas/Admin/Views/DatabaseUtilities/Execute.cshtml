@@ -1,0 +1,37 @@
+﻿@model digioz.Portal.Web.Areas.Admin.Models.DatabaseQueryViewModel
+
+@{
+    ViewBag.Title = "Execute";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Execute Command</h2>
+
+<h6>@ViewBag.Message</h6>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QueryString, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.QueryString, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.QueryString)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </div>
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,122 @@
+﻿@using digioz.Portal.Domain.Constants
+@{
+    var globalClass = Convert.ToBoolean(PageData[AppConstants.IsMobileDevice]) ? "mobile" : "desktop";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    @RenderSection("Meta", false)
+    @ViewBag.Canonical
+
+    @Styles.Render("~/Content/forum")
+
+
+    <style type="text/css">
+        body { padding-top: 50px; padding-bottom: 40px; }
+    </style>
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    <script type="text/javascript">
+        var app_base = '@Url.Content("~/")';
+    </script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/forum")
+
+
+    @RenderSection("Header", false)
+</head>
+<body class="desktop">
+    <div class="container">
+        <div style="padding-left:20px;">
+            <a href="/"><img src="~/Content/images/Logo_Small.png" alt="DigiOz Portal" /></a>
+            <h1 style="position:absolute; top:20px;">&nbsp;</h1><br /><br />
+        </div>
+    </div>
+    <div class=" navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="glyphicon glyphicon-bar"></span>
+                <span class="glyphicon glyphicon-bar"></span>
+                <span class="glyphicon glyphicon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="@Url.Action("Index", "Home", new {area = ""})">Home</a></li>
+                <li><a href="@Url.Action("Index", "ForumHome", new {area = "Forum"})">Forum @Html.LanguageString("Layout.Nav.Home")</a></li>
+                @if (Html.Settings().EnablePoints)
+                {
+                    <li><a href="@Url.Action("Leaderboard", "ForumHome", new {area = "Forum"})">@Html.LanguageString("Layout.Nav.Leaderboard")</a></li>
+                }
+
+                <li><a href="@Url.Action("Activity", "ForumHome", new {area = "Forum"})">@Html.LanguageString("Layout.Nav.Activity")</a></li>
+                <li><a href="@Url.Action("AllBadges", "Badge", new {area = "Forum"})">@Html.LanguageString("Layout.Nav.Badges")</a></li>
+
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    if (Html.Settings().SuspendRegistration != true)
+                    {
+                        <li><a href="@Url.Action("Register", "Account", new {area = ""})">@Html.LanguageString("Layout.Nav.Register")</a></li>
+                    }
+                    <li><a href="@Url.Action("Login", "Account", new {area = ""})">@Html.LanguageString("Layout.Nav.Logon")</a></li>
+                }
+@*
+    @if (User.IsInRole(AppCon   stants.AdminRoleName))
+    {
+        <li><a href="@Url.Action("Index", "ForumManager", new { area = "Admin" }, null)">@Html.LanguageString("Layout.Nav.Admin")</a></li>
+    }
+        TODO: Need to create dropdown list to swap language
+        Lists out languages
+        @Html.Action("Index","Language")
+*@
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+
+
+    <div class="container">
+        @Html.Partial("_GenericMessage")
+        @Html.Partial("_EmailConfirmationNotice")
+        @Html.Partial("_NoScript")
+        <div id="main" class="row mainbody">
+
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
+            <div class="col-md-3 sidelayoutsection">
+                <div class="main-side-box">
+                    @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.Action("CreateTopicButton", "Topic")
+                    @Html.Action("SideAdminPanel", "Members")
+            }
+                    @RenderSection("side", false)
+                </div>
+            </div>
+
+        </div>
+        <hr>
+        @Html.Action("GetMainStats", "Stats")
+        @Html.Action("GetCurrentActiveMembers", "Members")
+        @RenderSection("Footer", false)
+
+        <hr>
+
+        <div class="row" style="background:#808080;width:100%;margin:0px;">
+            <div style="padding-top:10px;text-align:center;">
+                <p><a href="/Home/Index" style="color:#FFFFFF;padding-top:20px;">&copy; @DateTime.Now.Year @HttpContext.Current.Session["SiteName"]</a></p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

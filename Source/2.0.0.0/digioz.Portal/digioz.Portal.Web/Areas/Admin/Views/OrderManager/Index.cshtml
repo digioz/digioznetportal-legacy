@@ -1,0 +1,31 @@
+﻿@model IEnumerable<digioz.Portal.Domain.DomainModel.Order>
+@using digioz.Portal.Web.Extensions
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 20);
+}
+
+<h2>Orders</h2>
+
+@grid.GetHtml(
+        tableStyle: "gridtable table table-bordered",
+    columns: new[] {
+    grid.Column("InvoiceNumber", "Invoice Number"),
+    grid.Column("OrderDate", "Order Date"),
+    grid.Column("Email"),
+    grid.Column("Total"),
+    grid.Column("",
+                header: "Actions",
+                format: @<text>
+                    @Html.Raw(
+                    Html.ActionImage("Details", new { id = item.ID }, "~/Content/images/icons/16x16/Search.png", imageAttributes: new { alt = "Details", @class = "icon" },
+                        linkAttributes: new { title = "Details" }).ToString() + " " +
+                    Html.ActionImage("Edit", new { id = item.ID }, "~/Content/images/icons/16x16/Edit.png", imageAttributes: new { alt = "Edit", @class = "icon" },
+                        linkAttributes: new { title = "Edit" }).ToString() + " " +
+                    Html.ActionImage("Delete", new { id = item.ID }, "~/Content/images/icons/16x16/Cancel.png", imageAttributes: new { alt = "Delete", @class = "icon" },
+                        linkAttributes: new { title = "Delete" }).ToString()
+                    )
+                 </text>
+                )
+})

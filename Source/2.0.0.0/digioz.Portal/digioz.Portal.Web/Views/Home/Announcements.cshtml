@@ -1,0 +1,22 @@
+﻿@model List<digioz.Portal.Domain.DomainModel.Announcement>
+@{
+    ViewBag.Title = "Announcements";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    @foreach (var item in @Model)
+    {
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">@item.Title</h3>
+            </div>
+            <div class="panel-body">
+                @Html.Raw(item.Body)
+            </div>
+            <div>
+                @{ Html.RenderAction("CommentsMenu", "Menu", new { referenceId = item.ID, referenceType = "Announcement" }); }
+            </div>
+
+        </div>
+    }
+

@@ -1,0 +1,46 @@
+﻿@model digioz.Portal.Web.Areas.Admin.ViewModels.BackupToXMLViewModel
+@{
+    ViewBag.Title = "Backup Database To XML";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Backup Database To XML</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ListOfTables">Tables To Export</label>
+            <div class="col-md-10" style="padding-left:30px;">
+                <select class="form-control" id="ListOfTables" name="ListOfTables" multiple>
+                    @foreach (var item in Model.ListOfTables)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ExportAllTables">Export All Tables?</label>
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    @Html.CheckBoxFor(model => model.ExportAllTables)
+                    @Html.ValidationMessageFor(model => model.ExportAllTables)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Backup Tables" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+}

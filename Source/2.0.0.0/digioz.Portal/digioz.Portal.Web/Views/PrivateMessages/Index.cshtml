@@ -1,0 +1,31 @@
+﻿@model IEnumerable<digioz.Portal.Domain.DomainModel.PrivateMessage>
+@using digioz.Portal.Web.Extensions
+@{
+    ViewBag.Title = "Inbox";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10);
+}
+
+<h2>Inbox</h2>
+
+<p>
+    <div class="btn btn-primary">@Html.ActionLink("Send Private Message", "Create", null, new { style = "color:#ffffff;"})</div>
+</p>
+
+@grid.GetHtml(
+        tableStyle: "gridtable table table-bordered",
+    columns: new[] {
+    grid.Column("Subject", "Subject"),
+    grid.Column("DateSent", "Date Sent"),
+    grid.Column("UserFrom.UserName", "From"),
+    grid.Column("",
+                header: "Actions",
+                format: @<text>
+                    @Html.Raw(
+                    Html.ActionImage("Details", new { id = item.ID }, "~/Content/images/icons/16x16/Search.png", imageAttributes: new { alt = "Delete", @class = "icon" },
+                        linkAttributes: new { title = "Details" }).ToString()
+                    )
+                </text>
+                )
+})
+

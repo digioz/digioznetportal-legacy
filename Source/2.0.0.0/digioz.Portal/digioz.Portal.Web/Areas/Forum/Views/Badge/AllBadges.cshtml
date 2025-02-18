@@ -1,0 +1,31 @@
+﻿@model digioz.Portal.Web.Areas.Forum.ViewModels.AllBadgesViewModel
+@{
+    ViewBag.Title = Html.LanguageString("Badges.PageTitle");
+}
+
+@section side
+{
+    @Html.Action("ListCategorySideMenu", "Category")
+    @Html.Action("SideSearch", "Search")
+    @Html.Action("PopularTags", "Tag")
+    @Html.Action("CurrentWeekHighPointUsers", "Point")
+}
+
+
+<h2>@ViewBag.Title</h2>
+
+<div class="badgeholder">
+    @foreach (var badge in Model.AllBadges)
+    {
+        <div class="row publicbadgeline">
+            <div class="publicbadge col-md-2">
+                <img src="@Url.Content(AppHelpers.ReturnBadgeUrl(badge.Image))" alt="@badge.Name" />
+            </div>
+            <div class="publicbadgedetails span10">
+                <p class="publicbadgename">@Html.Raw(badge.DisplayName)</p>
+                <p class="publicbadgenamedesc">@badge.Description</p>
+            </div>
+        </div>
+        <hr />
+    }
+</div>

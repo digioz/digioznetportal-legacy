@@ -1,0 +1,1 @@
+﻿This documentation folder is dedicated to Developers that work on the Core Project or Webmasters with Development Skills that wish to further extend this Content Management Portal. 

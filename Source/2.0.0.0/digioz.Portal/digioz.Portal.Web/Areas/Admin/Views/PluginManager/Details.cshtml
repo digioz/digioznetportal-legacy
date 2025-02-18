@@ -1,0 +1,42 @@
+﻿@model digioz.Portal.Domain.DomainModel.Plugin
+
+@{
+    ViewBag.Title = "Plugin Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Plugin Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DLL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DLL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsEnabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsEnabled)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

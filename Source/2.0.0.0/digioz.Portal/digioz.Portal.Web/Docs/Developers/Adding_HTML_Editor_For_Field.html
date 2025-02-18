@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Adding an HTML Editor for a Field</title>
+</head>
+<body>
+    <h1>Adding an HTML Editor for a Field</h1>
+    <p>In order to add an HTML Editor for an Editor Field in the Admin Area, you must do the following:</p>
+
+    <ul>
+        <li>Add the Attribute "[UIHint("tinymce_jquery_full"), AllowHtml]" in the Model definition right above the column name. </li>
+        <li>Add a reference to "System.Web.Mvc" and "System.ComponentModel.DataAnnotations" libraries.</li>
+    </ul>
+
+    <p>The <b>TinyMCE Editor</b> was installed using the Package Manager by running the following command:</p>
+    <p>&nbsp;</p>
+    <pre>
+        PM> Install-Package TinyMCE.MVC.JQuery
+    </pre>
+</body>
+</html>

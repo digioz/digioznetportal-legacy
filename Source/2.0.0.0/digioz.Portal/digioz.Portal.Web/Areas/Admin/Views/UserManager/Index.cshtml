@@ -1,0 +1,37 @@
+﻿@model IEnumerable<digioz.Portal.Web.Models.ViewModels.UserManagerViewModel>
+@using digioz.Portal.Web.Extensions
+@{
+    ViewBag.Title = "User Manager";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 20);
+}
+
+<p>
+    <div class="btn btn-default">@Html.ActionLink("Create New", "Create")</div>
+</p>
+<div>
+    <form class="navbar-form navbar-right" role="search" style="text-align: right;" action="@Url.Action("Search")">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" name="searchString">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+    </form>
+</div>
+
+@grid.GetHtml(
+    tableStyle: "table",
+    columns: new[] {
+    grid.Column("Id", "ID"),
+    grid.Column("UserName", "User Name"),
+    grid.Column("Email", "Email"),
+    grid.Column("",
+                header: "",
+                format: (item) => MvcHtmlString.Create(
+                            Html.ActionImage("Details", new { Id = item.Id }, "~/Content/images/icons/16x16/Search.png", imageAttributes: new { alt = "Details", @class = "icon" },
+                                linkAttributes: new { title = "Details" }).ToString() + " " +
+                            Html.ActionImage("Edit", new { Id = item.Id }, "~/Content/images/icons/16x16/Edit.png", imageAttributes: new { alt = "Edit", @class = "icon" },
+                                linkAttributes: new { title = "Edit" }).ToString() + " " +
+                            Html.ActionImage("Delete", new { Id = item.Id }, "~/Content/images/icons/16x16/Cancel.png", imageAttributes: new { alt = "Delete", @class = "icon" },
+                                linkAttributes: new { title = "Delete"}).ToString())
+                )
+})

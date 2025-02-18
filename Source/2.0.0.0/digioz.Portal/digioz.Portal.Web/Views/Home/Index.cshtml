@@ -1,0 +1,60 @@
+﻿@model digioz.Portal.Web.Models.ViewModels.HomeIndexViewModel
+
+@{
+    ViewBag.Title = "Home";
+}
+
+@section keywords {
+    @if (Model.Page != null && Model.Page.Keywords != null)
+    {
+        <meta name="keywords" content="@Model.Page.Keywords" />
+    }
+}
+
+@section description {
+    @if (Model.Page != null && Model.Page.Description != null)
+    {
+        <meta name="description" content="@Model.Page.Description" />
+    }
+}
+
+@if (Model.Announcements != null)
+{
+    @section featured {
+
+        @{ Html.RenderAction("SlideShow", "Menu", new { zoneType = "BodyTop" });}
+
+        @foreach (var item in @Model.Announcements)
+        {
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@item.Title</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.Raw(item.Body)
+                </div>
+                <div>
+                    @{ Html.RenderAction("CommentsMenu", "Menu", new { referenceId = item.ID, referenceType = "Announcement" }); }
+                </div>
+            </div>
+        }
+        <div class="text-center">@Html.ActionLink("View More", "Announcements", "Home", null, new { @class = "btn btn-xs btn-primary" })</div>
+        <br />
+
+        @{ Html.RenderAction("LatestPictures", "Menu");}
+
+    }
+}
+
+@section RSSFeed {
+    @{ Html.RenderAction("RSSFeed", "Menu");}
+}
+
+@{
+    if (Model.Page != null)
+    {
+        @Html.Raw(Model.Page.Body)
+    }
+
+    Html.RenderAction("CommentsMenu", "Menu", new { referenceId = Model.Page.ID, referenceType = "Page" });
+}
